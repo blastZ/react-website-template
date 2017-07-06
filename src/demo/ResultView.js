@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 class ResultView extends Component {
     render() {
         const resultData = this.props.resultData
+        const number = resultData.number
         const resultObjects = resultData.objects
         return (
             <div className="flex-box flex-column w3-text-black full-height" style={{width: '34%', flex: '1 1 auto'}}>
@@ -14,8 +15,8 @@ class ResultView extends Component {
                     <div style={{width: '100%'}}>
                         <p className="w3-text-grey">LANGUAGE</p>
                         <select className="w3-select w3-border">
-                            <option>English (en)</option>
                             <option>Chinese (zh)</option>
+                            <option>English (en)</option>
                         </select>
                     </div>
                     <div className="w3-padding-16 full-height full-width">
@@ -23,8 +24,11 @@ class ResultView extends Component {
                         <span className="w3-right w3-text-grey">PROBABILITY</span>
                         <ul className="w3-ul w3-hoverable" id="result">
                             {
+                                number === 0 ?
+                                    <li className="w3-hover-light-grey" style={{cursor: 'pointer', boxShadow: 'inset 0 -1px 0 0 rgba(28, 40, 56, 0.12)'}}><b>No Objects</b></li>
+                                :
                                 resultObjects.map((resultObject) => (
-                                    <li key={resultObject.probability} className="w3-hover-light-grey" style={{cursor: 'pointer'}}><b>{resultObject.name}</b><span className="w3-right">{resultObject.probability}</span></li>
+                                    <li key={resultObject.probability} className="w3-hover-light-grey" style={{cursor: 'pointer', boxShadow: 'inset 0 -1px 0 0 rgba(28, 40, 56, 0.12)'}}><b>{resultObject.name}</b><span className="w3-right">{resultObject.probability}</span></li>
                                 ))
                             }
                         </ul>

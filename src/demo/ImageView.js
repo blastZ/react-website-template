@@ -2,8 +2,14 @@ import React, {Component} from 'react'
 import NavBar from './NavBar.js'
 import SelectedImage from './SelectedImage.js'
 import SelectBar from './SelectBar.js'
+import $ from 'jquery'
 
 class ImageView extends Component {
+    constructor() {
+        super()
+        this.sendRequest(require('../imgs/cat-1.jpg'),'not-new')
+    }
+
     state = {
         imageList: [
             require('../imgs/cat-1.jpg'),
@@ -23,15 +29,56 @@ class ImageView extends Component {
         for(let i=0; i<imageList.length; i++) {
             if(imageList[i].toString() === strURL) {
                 this.setState({selectedImage: i});
+                this.sendRequest(strURL, 'not-new');
                 break;
             }
         }
     }
 
-    loadImage = (imgURL,resultData) => {
-        this.setState({ imageList: this.state.imageList.concat([imgURL])})
-        this.setState({ selectedImage: (this.state.imageList.length - 1)})
-        this.props.onShowResult(resultData)
+    loadImage = () => {
+        const that = this;
+        $('#file').on('change', function(){
+            var file = this.files[0];
+        	if(file) {
+                var name = file.name;
+            	var size = file.size;
+            	var type = file.type;
+          		var url = window.URL.createObjectURL(file);
+                that.sendRequest(url, 'new');
+            }
+
+        })
+    }
+
+    sendRequest = (url, isNew) => {
+        const that = this;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = "blob";
+        xhr.onload = function(e) {
+            var imgBlob = xhr.response;
+            var fd = new FormData();
+            fd.append('file', imgBlob);
+            var xhr2 = new XMLHttpRequest();
+            xhr2.open("POST", "http://demo.codvision.com:16802/api/demofile");
+            xhr2.onreadystatechange  = function(e) {
+                if (xhr2.readyState === XMLHttpRequest.DONE) {
+                    if (xhr2.status === 200) {
+                        const data = xhr2.response;
+                        const jsonData = JSON.parse(data);
+                        if(isNew === 'new') {
+                            that.setState({ imageList: that.state.imageList.concat([url])})
+                            that.setState({ selectedImage: (that.state.imageList.length - 1)});
+                        }
+                        that.props.onShowResult(jsonData)
+                    } else {
+
+                    }
+                }
+            }
+            xhr2.send(fd);
+        }
+        xhr.send();
     }
 
     changeMode = (mode) => {

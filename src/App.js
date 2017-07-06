@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './css/w3.css'
 import './css/App.css'
 import TopBar from './TopBar.js'
 import Home from './Home.js'
@@ -10,7 +11,6 @@ import DescriptionBar from './DescriptionBar.js'
 import BottomBar from './BottomBar.js'
 import Demo from './demo/Demo.js'
 import { Route } from 'react-router-dom'
-import './css/w3.css'
 
 class App extends Component {
     render() {
