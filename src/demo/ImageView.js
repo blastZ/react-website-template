@@ -7,7 +7,7 @@ import $ from 'jquery'
 class ImageView extends Component {
     constructor() {
         super()
-        this.sendRequest(require('../imgs/cat-1.jpg'),'not-new')
+        this.sendFileRequest(require('../imgs/cat-1.jpg'),'not-new')
     }
 
     state = {
@@ -29,7 +29,7 @@ class ImageView extends Component {
         for(let i=0; i<imageList.length; i++) {
             if(imageList[i].toString() === strURL) {
                 this.setState({selectedImage: i});
-                this.sendRequest(strURL, 'not-new');
+                this.sendFileRequest(strURL, 'not-new');
                 break;
             }
         }
@@ -40,17 +40,14 @@ class ImageView extends Component {
         $('#file').on('change', function(){
             var file = this.files[0];
         	if(file) {
-                var name = file.name;
-            	var size = file.size;
-            	var type = file.type;
           		var url = window.URL.createObjectURL(file);
-                that.sendRequest(url, 'new');
+                that.sendFileRequest(url, 'new');
             }
 
         })
     }
 
-    sendRequest = (url, isNew) => {
+    sendFileRequest = (url, isNew) => {
         const that = this;
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -67,8 +64,10 @@ class ImageView extends Component {
                         const data = xhr2.response;
                         const jsonData = JSON.parse(data);
                         if(isNew === 'new') {
-                            that.setState({ imageList: that.state.imageList.concat([url])})
-                            that.setState({ selectedImage: (that.state.imageList.length - 1)});
+                            that.setState((state) => {
+                                state.imageList =  state.imageList.concat([url])
+                                state.selectedImage = state.imageList.length - 1
+                            })
                         }
                         that.props.onShowResult(jsonData)
                     } else {
