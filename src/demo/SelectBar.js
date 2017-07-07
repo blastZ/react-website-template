@@ -6,8 +6,8 @@ class SelectBar extends Component {
             <ul style={{width:'100%', backgroundColor:'#18212e', paddingTop: '20px', paddingBottom: '20px'}} id="select-bar">
                 {this.props.imageList.map((image, index) => (
                     index !== this.props.selectedImage ?
-                    <BarItem key={image.toString()} onClickItem={this.props.onClickItem} dataKey={image.toString()} imageURL={image}/> :
-                    <SelectedBarItem key={image.toString()} onClickItem={this.props.onClickItem} dataKey={image.toString()} imageURL={image}/>
+                    <BarItem key={image.url.toString()} onClickItem={this.props.onClickItem} dataKey={image.url.toString()} imageURL={image.url}/> :
+                    <SelectedBarItem key={image.url.toString()} onClickItem={this.props.onClickItem} dataKey={image.url.toString()} imageURL={image.url}/>
                 ))}
             </ul>
         )

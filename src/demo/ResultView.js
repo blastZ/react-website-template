@@ -1,10 +1,62 @@
 import React, {Component} from 'react'
 
 class ResultView extends Component {
-    render() {
+
+    getListItem = () => {
         const resultData = this.props.resultData
-        const number = resultData.number
-        const resultObjects = resultData.objects
+        const mode = this.props.mode
+        if(mode === 'GENERAL') {
+            const resultObjects = resultData.objects
+            const number = resultData.number
+            if(resultObjects) {
+                return(
+                    resultObjects.map((resultObject) => (
+                        <li key={resultObject.probability} className="w3-hover-light-grey">
+                            <b>{resultObject.name}</b>
+                            <span className="w3-right">{resultObject.probability}</span>
+                        </li>
+                    ))
+                )
+            } else {
+                return (<li className="w3-hover-light-grey"><b>No Objects</b></li>)
+            }
+        } else if(mode === 'FACE') {
+            if(resultData.similarity) {
+                return (
+                    <li className="w3-hover-light-grey">
+                        <b>{resultData.similarity}</b>
+                    </li>
+                )
+            } else {
+                return (
+                    <li className="w3-hover-light-grey">
+                        <b>Invalid Image</b>
+                    </li>
+                )
+            }
+        }
+    }
+
+    getResultName = () => {
+        const mode = this.props.mode
+        if(mode === 'GENERAL') {
+            return(
+                <div>
+                    <span className="w3-text-grey">PREDICTED CONCEPT</span>
+                    <span className="w3-right w3-text-grey">PROBABILITY</span>
+                </div>
+            )
+
+        } else if(mode === 'FACE') {
+            return(
+                <div>
+                    <span className="w3-text-grey">SIMILARITY</span>
+                </div>
+            )
+        }
+    }
+
+    render() {
         return (
             <div className="flex-box flex-column w3-text-black full-height" style={{width: '34%', flex: '1 1 auto'}}>
                 <div style={{width: '100%', padding: '8px 10px', borderBottom: '1px solid rgba(27, 38, 52, 0.08)'}}>
@@ -20,18 +72,10 @@ class ResultView extends Component {
                         </select>
                     </div>
                     <div className="w3-padding-16 full-height full-width">
-                        <span className="w3-text-grey">PREDICTED CONCEPT</span>
-                        <span className="w3-right w3-text-grey">PROBABILITY</span>
-                        <ul className="w3-ul w3-hoverable" id="result">
-                            {
-                                number === 0 ?
-                                    <li className="w3-hover-light-grey" style={{cursor: 'pointer', boxShadow: 'inset 0 -1px 0 0 rgba(28, 40, 56, 0.12)'}}><b>No Objects</b></li>
-                                :
-                                resultObjects.map((resultObject) => (
-                                    <li key={resultObject.probability} className="w3-hover-light-grey" style={{cursor: 'pointer', boxShadow: 'inset 0 -1px 0 0 rgba(28, 40, 56, 0.12)'}}><b>{resultObject.name}</b><span className="w3-right">{resultObject.probability}</span></li>
-                                ))
-                            }
-                        </ul>
+                        {this.getResultName()}
+                        <ul className="w3-ul w3-hoverable" id="result">{
+                            this.getListItem()
+                        }</ul>
                     </div>
                 </div>
             </div>

@@ -4,9 +4,7 @@ import ResultView from './ResultView.js'
 
 class Demo extends Component {
     state = {
-        resultData: {
-            number: 0
-        },
+        resultData: {},
         mode: "GENERAL"
     }
 
@@ -16,7 +14,8 @@ class Demo extends Component {
             this.drawCanvas()
         }
     }
-
+    //this function will update imageView
+    //<!!!!!!!!!!!!!!!!!bug> if request response a long time the image will not show
     drawCanvas() {
         const that = this
         const c = document.getElementById('canvas')
@@ -59,14 +58,19 @@ class Demo extends Component {
         }
     }
 
+    //top changeMode function
     changeMode = (mode) => {
-        this.setState({mode: mode})
+        this.setState((state) => {
+            state.mode = mode
+            //change mode clear resultData
+            state.resultData = {}
+        })    
     }
 
     render() {
         return (
             <div className="flex-box full-height" style={{paddingTop: '46px'}}>
-                <ImageView onChangeMode={this.changeMode} onShowResult={this.showResult}/>
+                <ImageView mode={this.state.mode} onChangeMode={this.changeMode} onShowResult={this.showResult}/>
                 <ResultView mode={this.state.mode} resultData={this.state.resultData}/>
             </div>
         )
