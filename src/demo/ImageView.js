@@ -21,6 +21,7 @@ class ImageView extends Component {
 
     //click navbar item to show image and send request
     clickItem = (strURL) => {
+        this.props.onClickItem()
         const that = this
         const imageList = this.state.imageList;
         for(let i=0; i<imageList.length; i++) {
@@ -188,7 +189,7 @@ class ImageView extends Component {
         return (
             <div className="flex-box" style={{width: '66%', height: '100%', maxHeight:'100%', flex: '1 1 auto', flexDirection: 'column'}}>
                 <NavBar onChangeMode={this.changeMode}/>
-                <SelectedImage mode={this.props.mode} selectedImage={this.state.imageList[this.state.selectedImage].url}/>
+                <SelectedImage mode={this.props.mode} compareImage={this.state.imageList[3].url} selectedImage={this.state.imageList[this.state.selectedImage].url}/>
                 <SelectBar onClickItem={this.clickItem} imageList={this.state.imageList} selectedImage={this.state.selectedImage}/>
             </div>
         )
