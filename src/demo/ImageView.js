@@ -7,14 +7,13 @@ import $ from 'jquery'
 class ImageView extends Component {
     state = {
         imageList: [
-            {url: require('../imgs/cat-1.jpg'), resultData: {}, resultDataOfFace: {}},
-            {url: require('../imgs/cat-2.jpg'), resultData: {}, resultDataOfFace: {}},
-            {url: require('../imgs/cat-3.jpg'), resultData: {}, resultDataOfFace: {}},
-            {url: require('../imgs/cat-4.jpg'), resultData: {}, resultDataOfFace: {}},
-            {url: require('../imgs/cat-5.jpg'), resultData: {}, resultDataOfFace: {}},
-            {url: require('../imgs/cat-6.jpg'), resultData: {}, resultDataOfFace: {}},
-            {url: require('../imgs/cat-7.jpg'), resultData: {}, resultDataOfFace: {}},
-            {url: require('../imgs/cat-8.jpg'), resultData: {}, resultDataOfFace: {}}
+            {url: require('../imgs/file_test.jpg'), resultData: {}, resultDataOfFace: {}}
+        ],
+        imageListOfObject: [
+            {url: require('../imgs/file_test.jpg'), resultData: {}, resultDataOfFace: {}}
+        ],
+        imageListOfFace: [
+            {url: require('../imgs/face_test.jpg'), resultData: {}, resultDataOfFace: {}}
         ],
         selectedImage: 0,
     }
@@ -69,7 +68,7 @@ class ImageView extends Component {
     }
 
     componentWillMount() {
-        this.sendFileRequest(require('../imgs/cat-1.jpg'), 0, 'not-new')
+        this.sendFileRequest(require('../imgs/file_test.jpg'), 0, 'not-new')
     }
 
     componentDidMount() {
@@ -180,8 +179,21 @@ class ImageView extends Component {
 
     //second floor changeMode function
     changeMode = (mode) => {
-        console.log("first change the mode send the inmode request")
-        this.sendRequestInMode(mode, this.state.selectedImage, this.state.imageList[this.state.selectedImage].url, 'not-new')
+        const that = this
+        if(mode === 'FACE') {
+            this.setState((state) => {
+                state.imageList = state.imageListOfFace
+                state.selectedImage = 0 //here is something wrong
+            })
+        } else if(mode === 'GENERAL') {
+            this.setState((state) => {
+                state.imageList = state.imageListOfObject
+                state.selectedImage = 0
+            })
+        }
+        setTimeout(function() {
+            that.sendRequestInMode(mode, that.state.selectedImage, that.state.imageList[that.state.selectedImage].url, 'not-new')
+        },1)
         this.props.onChangeMode(mode)
     }
 
@@ -189,7 +201,7 @@ class ImageView extends Component {
         return (
             <div className="flex-box" style={{width: '66%', height: '100%', maxHeight:'100%', flex: '1 1 auto', flexDirection: 'column'}}>
                 <NavBar onChangeMode={this.changeMode}/>
-                <SelectedImage mode={this.props.mode} compareImage={this.state.imageList[3].url} selectedImage={this.state.imageList[this.state.selectedImage].url}/>
+                <SelectedImage mode={this.props.mode} compareImage={require('../imgs/cat-4.jpg')} selectedImage={this.state.imageList[this.state.selectedImage].url}/>
                 <SelectBar onClickItem={this.clickItem} imageList={this.state.imageList} selectedImage={this.state.selectedImage}/>
             </div>
         )

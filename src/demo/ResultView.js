@@ -68,7 +68,6 @@ class ResultView extends Component {
                         <p className="w3-text-grey">LANGUAGE</p>
                         <select className="w3-select w3-border">
                             <option>Chinese (zh)</option>
-                            <option>English (en)</option>
                         </select>
                     </div>
                     <div className="w3-padding-16 full-height full-width">

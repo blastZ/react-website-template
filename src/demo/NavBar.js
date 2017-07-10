@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 
 class NavBar extends Component {
     state = {
-        modeList: ['COLOR','NSFW','FACE','GENERAL'],
-        modeListAll: ['GENERAL','FACE','NSFW','COLOR','WEDDING','TRAVEL','CELEBRITY','DEMOGRAPHICS','LOGO','FOOD','APPAREL','FOCUS'],
+        modeList: ['FACE','GENERAL'],
+        //modeListAll: ['GENERAL','FACE','NSFW','COLOR','WEDDING','TRAVEL','CELEBRITY','DEMOGRAPHICS','LOGO','FOOD','APPAREL','FOCUS'],
         selectedMode: 'GENERAL'
     }
     render() {
@@ -22,18 +22,21 @@ class NavBar extends Component {
                         ))
                     }
                 </div>
-                <div className="full-height dropdown" style={{position: 'relative'}}>
-                    <button className="w3-button w3-text-grey w3-hover-black-blue dropdown-button">
-                        MORE MODELS&nbsp;<i className="fa fa-filter" aria-hidden="true"></i>
-                    </button>
-                    <ul id="demo-drop-down" className="flex-box flex-column dropdown-content">
-                        {this.state.modeListAll.map((mode) => (
-                            <li key={mode}>{mode}</li>
-                        ))}
-                    </ul>
-                </div>
             </div>
         )
+        //drop down list show more modes
+        // {
+        //     <div className="full-height dropdown" style={{position: 'relative'}}>
+        //         <button className="w3-button w3-text-grey w3-hover-black-blue dropdown-button">
+        //             MORE MODELS&nbsp;<i className="fa fa-filter" aria-hidden="true"></i>
+        //         </button>
+        //         <ul id="demo-drop-down" className="flex-box flex-column dropdown-content">
+        //             {this.state.modeListAll.map((mode) => (
+        //                 <li key={mode}>{mode}</li>
+        //             ))}
+        //         </ul>
+        //     </div>
+        // }
     }
 }
 
