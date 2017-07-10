@@ -74,6 +74,8 @@ class ResultView extends Component {
                     <div className="w3-padding-16 full-height full-width">
                         {this.getResultName()}
                         <ul className="w3-ul w3-hoverable" id="result">{
+                            this.props.loading === 'true' ?
+                            (<i className="fa fa-spinner w3-spin" style={{fontSize: '2em', margin: '0.2em 0.5em'}}></i>) :
                             this.getListItem()
                         }</ul>
                     </div>
