@@ -71,10 +71,14 @@ class Demo extends Component {
         this.setState({loading: 'true'})
     }
 
+    loadImage = () => {
+        this.setState({loading: 'true'})
+    }
+
     render() {
         return (
             <div className="flex-box full-height" style={{paddingTop: '46px'}}>
-                <ImageView mode={this.state.mode} onClickItem={this.clickItem} onChangeMode={this.changeMode} onShowResult={this.showResult}/>
+                <ImageView mode={this.state.mode} onLoadingImage={this.loadImage} onClickItem={this.clickItem} onChangeMode={this.changeMode} onShowResult={this.showResult}/>
                 <ResultView loading={this.state.loading} mode={this.state.mode} resultData={this.state.resultData}/>
             </div>
         )

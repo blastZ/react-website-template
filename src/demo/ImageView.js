@@ -77,6 +77,12 @@ class ImageView extends Component {
             var file = this.files[0];
         	if(file) {
           		var url = window.URL.createObjectURL(file);
+                that.setState((state) => {
+                    //concat all properties otherwise the new iamge's properties will be undefine
+                    state.imageList = state.imageList.concat([{url: url, resultData: {}, resultDataOfFace: {}}])
+                    state.selectedImage = state.imageList.length - 1
+                })
+                that.props.onLoadingImage()
                 that.sendRequestInMode(that.props.mode, 0, url, 'new');
             }
 
@@ -103,9 +109,7 @@ class ImageView extends Component {
                                 const jsonData = JSON.parse(data);
                                 if(isNew === 'new') {
                                     that.setState((state) => {
-                                        //concat all properties otherwise the new iamge's properties will be undefine
-                                        state.imageList =  state.imageList.concat([{url: url, resultData: {}, resultDataOfFace: jsonData}])
-                                        state.selectedImage = state.imageList.length - 1
+                                        state.imageList[state.selectedImage].resultDataOfFace = jsonData
                                     })
                                 } else {
                                     that.setState((state) => {
@@ -116,7 +120,8 @@ class ImageView extends Component {
                             } else {
                                 console.log('face post wrong!')
                             }
-                        } else {
+                        }
+                        else {
                             //when the post failed add invalid image to resultDataOfFace
                             that.setState((state) => {
                                 state.imageList[state.selectedImage].resultDataOfFace = {similarity: 'Invalid Image'}
@@ -153,9 +158,7 @@ class ImageView extends Component {
                                 const jsonData = JSON.parse(data);
                                 if(isNew === 'new') {
                                     that.setState((state) => {
-                                        //concat all properties otherwise the new iamge's properties will be undefine
-                                        state.imageList =  state.imageList.concat([{url: url, resultData: jsonData, resultDataOfFace: {}}])
-                                        state.selectedImage = state.imageList.length - 1
+                                        state.imageList[state.selectedImage].resultData = jsonData
                                     })
                                 } else {
                                     that.setState((state) => {
@@ -179,11 +182,18 @@ class ImageView extends Component {
 
     //second floor changeMode function
     changeMode = (mode) => {
+        this.setState((state) => {
+            if(this.props.mode === 'GENERAL') {
+                state.imageListOfObject = state.imageList
+            } else if(this.props.mode === 'FACE') {
+                state.imageListOfFace = state.imageList
+            }
+        })
         const that = this
         if(mode === 'FACE') {
             this.setState((state) => {
                 state.imageList = state.imageListOfFace
-                state.selectedImage = 0 //here is something wrong
+                state.selectedImage = 0
             })
         } else if(mode === 'GENERAL') {
             this.setState((state) => {
