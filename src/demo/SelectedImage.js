@@ -5,14 +5,14 @@ class SelectedImage extends Component {
     getImageOrCanvas = () => {
         if(this.props.mode === 'GENERAL') {
             return (
-                <div>
+                <div id="selected-image-canvas-view" style={{marginBottom: '60px'}}>
                     <img id="source" className="w3-image" src={this.props.selectedImage} alt={this.props.selectedImage} style={{display: 'none'}}/>
-                    <canvas id="canvas"></canvas>
+                    <canvas style={{maxWidth: '100%', maxHeight: '100%'}} id="canvas"></canvas>
                 </div>
             )
         } else {
             return (
-                <img className="w3-image" src={this.props.selectedImage} alt={this.props.selectedImage} style={{maxHeight: '600px', maxWidth: '50%', marginLeft: '10px'}}/>
+                <img id="selected-image-view" className="w3-image" src={this.props.selectedImage} alt={this.props.selectedImage} style={{maxHeight: '600px', maxWidth: '50%', marginLeft: '10px'}}/>
             )
         }
     }
@@ -37,10 +37,10 @@ class SelectedImage extends Component {
 
     render() {
         return (
-            <div className="w3-center w3-padding-24 black-blue" style={{width: '100%', flexGrow: '1', position: 'relative'}}>
+            <div className="w3-center w3-padding-24 black-blue flex-box" style={{width: '100%', flexGrow: '1', position: 'relative', justifyContent: 'center'}}>
                 {this.getMainImageView(this.props.mode)}
-                <form id="url-form" style={{position: 'absolute', bottom: '0', left: '36%'}}>
-                    <label htmlFor="file" className="w3-button w3-text-white" style={{margin: '32px',backgroundColor: '#009cff'}}>
+                <form id="url-form" style={{position: 'absolute', bottom: '25px'}}>
+                    <label htmlFor="file" className="w3-button w3-text-white" style={{backgroundColor: '#009cff'}}>
                         <i className="fa fa-picture-o" aria-hidden="true"></i>&nbsp;
                         TRY YOUR OWN IMAGE OR VIDEO
                     </label>

@@ -10,9 +10,9 @@ class ResultView extends Component {
             const number = resultData.number
             if(resultObjects) {
                 return(
-                    resultObjects.map((resultObject) => (
+                    resultObjects.map((resultObject, index) => (
                         <li key={resultObject.probability} className="w3-hover-light-grey">
-                            <b>{resultObject.name}</b>
+                            <b>{`${index + 1}.  ${resultObject.name}`}</b>
                             <span className="w3-right">{resultObject.probability}</span>
                         </li>
                     ))
@@ -58,7 +58,7 @@ class ResultView extends Component {
 
     render() {
         return (
-            <div className="flex-box flex-column w3-text-black full-height" style={{width: '34%', flex: '1 1 auto'}}>
+            <div id="result-view" className="flex-box flex-column w3-text-black full-height" style={{width: '34%', flex: '1 1 auto'}}>
                 <div style={{width: '100%', padding: '8px 10px', borderBottom: '1px solid rgba(27, 38, 52, 0.08)'}}>
                     <p className="w3-left"><b>{this.props.mode}</b></p>
                     <p className="w3-text-blue w3-right"><b>VIEW DOCS</b></p>

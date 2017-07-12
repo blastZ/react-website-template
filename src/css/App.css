@@ -77,6 +77,7 @@ ul {
     align-items: center;
     padding: 20px 10px 20px 3px;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 #select-bar > li {
@@ -127,4 +128,34 @@ ul {
 #result > li {
     cursor: pointer;
     box-shadow: inset 0 -1px 0 0 rgba(28, 40, 56, 0.12);
+}
+
+@media screen and (max-width: 900px) {
+    #demo-view {
+        flex-direction: column;
+    }
+
+    #image-view {
+        width: 100% !important;
+    }
+
+    #result-view {
+        width: 100% !important;
+    }
+
+    #url-form {
+        position: fixed !important;
+    }
+
+    #selected-image-canvas-view {
+        margin: 0 !important;
+    }
+
+    #selected-image-view {
+        max-width: 38% !important;
+    }
+
+    #compare-image-view {
+        max-width: 48% !important;
+    }
 }

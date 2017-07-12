@@ -39,10 +39,11 @@ class Demo extends Component {
     }
 
     drawObjects() {
+        const that = this
         const c = document.getElementById('canvas')
         const objects = this.state.resultData.objects
         if(objects) {
-            objects.map((object) => {
+            objects.map(function(object, index) {
                 const leftWidth = Math.round(object.left * c.width)
                 const rightWidth = Math.round(object.right * c.width)
                 const topWidth = Math.round(object.top * c.height)
@@ -52,9 +53,19 @@ class Demo extends Component {
                 const width = rightWidth - leftWidth
                 const height = bottomWidth - topWidth
                 const ctx = c.getContext('2d')
-                ctx.lineWidth = 4
-                ctx.strokeStyle = 'black'
-                ctx.strokeRect(x,y,width,height)
+                ctx.lineWidth = 5
+                ctx.strokeStyle = '#485667'
+                ctx.strokeRect(x, y, width, height)
+                ctx.lineWidth = 2
+                ctx.strokeStyle = 'white'
+                ctx.strokeRect(x, y, width, height)
+
+                ctx.font = '2.5em Sans-serif'
+                ctx.lineWidth = 5
+                ctx.strokeStyle = '#485667'
+                ctx.strokeText((index + 1).toString(), x + 10, y + 40)
+                ctx.fillStyle = 'white'
+                ctx.fillText((index + 1).toString(), x + 10, y + 40)
             })
         }
     }
@@ -77,7 +88,7 @@ class Demo extends Component {
 
     render() {
         return (
-            <div className="flex-box full-height" style={{paddingTop: '46px'}}>
+            <div id="demo-view" className="flex-box full-height" style={{paddingTop: '46px'}}>
                 <ImageView mode={this.state.mode} onLoadingImage={this.loadImage} onClickItem={this.clickItem} onChangeMode={this.changeMode} onShowResult={this.showResult}/>
                 <ResultView loading={this.state.loading} mode={this.state.mode} resultData={this.state.resultData}/>
             </div>

@@ -120,8 +120,7 @@ class ImageView extends Component {
                             } else {
                                 console.log('face post wrong!')
                             }
-                        }
-                        else {
+                        } else {
                             //when the post failed add invalid image to resultDataOfFace
                             that.setState((state) => {
                                 state.imageList[state.selectedImage].resultDataOfFace = {similarity: 'Invalid Image'}
@@ -169,6 +168,12 @@ class ImageView extends Component {
                             } else {
                                 console.log('file post wrong!')
                             }
+                        } else {
+                            //post failed set number=0 to end the process and show the canvas
+                            that.setState((state) => {
+                                state.imageList[state.selectedImage].resultData = {number: 0}
+                            })
+                            that.props.onShowResult({})
                         }
                     }
                     xhr2.send(fd);
@@ -209,7 +214,7 @@ class ImageView extends Component {
 
     render() {
         return (
-            <div className="flex-box" style={{width: '66%', height: '100%', maxHeight:'100%', flex: '1 1 auto', flexDirection: 'column'}}>
+            <div id="image-view" className="flex-box" style={{width: '66%', height: '100%', maxHeight:'100%', flex: '1 1 auto', flexDirection: 'column'}}>
                 <NavBar onChangeMode={this.changeMode}/>
                 <SelectedImage mode={this.props.mode} compareImage={require('../imgs/cat-4.jpg')} selectedImage={this.state.imageList[this.state.selectedImage].url}/>
                 <SelectBar onClickItem={this.clickItem} imageList={this.state.imageList} selectedImage={this.state.selectedImage}/>
