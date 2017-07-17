@@ -41,7 +41,7 @@ class TopBar extends Component {
                 </div>
                 <div className="w3-bar-block w3-hide w3-hide-medium w3-hide-large w3-white w3-card-2" id="small-nav-bar">
                     <a className="w3-bar-item w3-button">LOGIN</a>
-                    <a className="w3-bar-item w3-button">ABOUT</a>
+                    <Link to="/demo" className="w3-bar-item w3-button">DEMO</Link>
                     <a className="w3-bar-item w3-button">PORTFOLIO</a>
                     <a className="w3-bar-item w3-button">CONTACT</a>
                     <a className="w3-bar-item w3-button">SEARCH</a>

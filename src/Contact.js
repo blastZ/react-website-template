@@ -1,6 +1,22 @@
 import React, {Component} from 'react'
 
 class Contact extends Component {
+    componentDidMount() {
+
+        const map = new window.BMap.Map("map")
+        const point = new window.BMap.Point(116.404, 39.915)
+        map.centerAndZoom(point, 15)
+        const marker = new window.BMap.Marker(point)
+        map.addOverlay(marker)
+        map.disableDragging()
+        map.disableScrollWheelZoom()
+        map.disableDoubleClickZoom()
+        
+    }
+
+    sendMessage = () => {
+        window.open('mailto:test@example.com');
+    }
 
     render() {
         return (
@@ -24,9 +40,9 @@ class Contact extends Component {
                                 <div className="w3-half"><input type="email" placeholder="Email" className="w3-input w3-border"></input></div>
                             </div>
                             <div>
-                                <input type="text" placeholder="Message" className="w3-input w3-border"></input>
+                                <input type="text" id="email-content" placeholder="Message" className="w3-input w3-border"></input>
                             </div>
-                            <button className="w3-button w3-black w3-right w3-section"><i className="fa fa-paper-plane"></i> SEND MESSAGE</button>
+                            <button onClick={this.sendMessage} className="w3-button w3-black w3-right w3-section"><i className="fa fa-paper-plane"></i> SEND MESSAGE</button>
                         </form>
                     </div>
                 </div>
