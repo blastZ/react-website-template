@@ -21,8 +21,8 @@ class App extends Component {
                         <TopBar mode="scroll-mode"/>
                         <Home/>
                         <About/>
-                        <DescriptionBar/>
                         <SegmentBar bgimg="bgimg-2" text="PRODUCT"/>
+                        <DescriptionBar/>
                         <Product/>
                         <SegmentBar bgimg="bgimg-3" text="CONTACT"/>
                         <Contact/>

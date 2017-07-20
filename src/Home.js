@@ -6,11 +6,11 @@ import scalable from './imgs/scalable.svg'
 const Home = (props) => (
     <div className="bgimg-1 w3-display-container" id="home">
         <div className="w3-display-middle w3-text-white w3-center w3-hide-small" style={{top: '35%', whiteSpace: 'nowrap'}}>
-            <h1 className="w3-wide">视频图像识别与输出</h1>
+            <h1 className="w3-wide">视频图像传输与识别</h1>
             <h4>专为极客和开发者设计</h4>
         </div>
         <div className="w3-hide-large w3-hide-medium w3-display-middle w3-center w3-text-white" style={{top: '35%', whiteSpace: 'nowrap'}}>
-            <h3>视频图像识别与输出</h3>
+            <h3>视频图像传输与识别</h3>
             <p>专为极客和开发者设计</p>
         </div>
         <div className="w3-row w3-center w3-padding-48 w3-hide-small" style={{position: 'absolute', bottom: '0', width: '100%', background: 'rgba(0,0,0,0.4)'}}>

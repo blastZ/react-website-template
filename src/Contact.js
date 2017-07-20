@@ -4,14 +4,14 @@ class Contact extends Component {
     componentDidMount() {
 
         const map = new window.BMap.Map("map")
-        const point = new window.BMap.Point(116.404, 39.915)
+        const point = new window.BMap.Point(120.378103, 30.310405)
         map.centerAndZoom(point, 15)
         const marker = new window.BMap.Marker(point)
         map.addOverlay(marker)
         map.disableDragging()
         map.disableScrollWheelZoom()
         map.disableDoubleClickZoom()
-        
+
     }
 
     sendMessage = () => {
@@ -21,17 +21,17 @@ class Contact extends Component {
     render() {
         return (
             <div className="w3-content w3-container w3-padding-64 w3-margin-top" id="contact">
-                <h3 className="w3-center">SECTION THREE</h3>
-                <p className="w3-center"><em>a short description</em></p>
+                <h3 className="w3-center">联系方式</h3>
+                <p className="w3-center"><em>有任何疑问，欢迎联系我们</em></p>
                 <div className="w3-row" style={{marginTop: '64px'}}>
                     <div className="w3-col m4">
                         <div id="map" style={{width: '100%', height: '400px', position: 'relative', overflow: 'hidden'}} className="w3-round-large"></div>
                     </div>
                     <div className="w3-col m8 w3-panel" style={{marginTop: '0'}}>
                         <div className="w3-large w3-margin-bottom">
-                            <p><i className="fa fa-map-marker fa-fw w3-margin-right w3-xlarge"></i>ZheJiang HangZhou, CN</p>
-                            <p><i className="fa fa-phone fa-fw w3-margin-right w3-xlarge"></i> Phone: +86 1234567654</p>
-                            <p><i className="fa fa-envelope fa-fw w3-margin-right w3-xlarge"></i> Email: mail@mail.com</p>
+                            <p><i className="fa fa-map-marker fa-fw w3-margin-right w3-xlarge"></i>{`杭州经济技术开发区白杨街道6号大街452号2幢A715-717号房`}</p>
+                            <p><i className="fa fa-phone fa-fw w3-margin-right w3-xlarge"></i> 联系电话: 0571-87796713</p>
+                            <p><i className="fa fa-envelope fa-fw w3-margin-right w3-xlarge"></i> 邮箱: sales@codvision.com</p>
                         </div>
                         <p>Swing by for a cup of <i className="fa fa-coffee"></i>,or leave me a note:</p>
                         <form action="" target="_blank">

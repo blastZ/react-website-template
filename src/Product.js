@@ -32,9 +32,6 @@ class Product extends Component {
         return (
             <div>
                 <div className="w3-content w3-container w3-padding-64" id="portfolio">
-                    <h3 className="w3-center">SECTION TWO</h3>
-                    <p className="w3-center"><em>a short description<br/>click on the image to view more imformation</em></p>
-                    <br/>
                     <div className="w3-row-padding w3-center cat-list">
                         {this.state.catBoardOne.map((cat) => (
                             <div className="w3-quarter w3-hover-opacity" key={cat.catURL}>
@@ -48,7 +45,7 @@ class Product extends Component {
                                 <img src={cat.catURL} className="w3-image" onClick={(event) => this.showImage(event.target)} alt={cat.catAlt}/>
                             </div>
                         ))}
-                        <button onClick={this.hideImage} className="w3-button w3-light-gray w3-padding-large" style={{marginTop: '64px'}}>LOAD MORE</button>
+                        
                     </div>
                 </div>
                 <div id="modal01" className="w3-modal" onClick={this.hideImage} style={{display: 'none', backgroundColor: 'rgba(0,0,0,0.8)'}}>
