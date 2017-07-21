@@ -11,15 +11,26 @@ import DescriptionBar from './DescriptionBar.js'
 import BottomBar from './BottomBar.js'
 import Demo from './demo/Demo.js'
 import { Route } from 'react-router-dom'
+import En from './languages/en.json'
+import Zh_cn from './languages/zh_cn.json'
 
 class App extends Component {
+    state = {
+        language: 'zh-cn'
+    }
+
+    changeLanguage = () => {
+        this.state.language === 'zh-cn' ? this.setState({language: 'en'}) : this.setState({language: 'zh-cn'})
+    }
+
     render() {
+        const content = this.state.language === 'zh-cn' ? Zh_cn : En
         return (
             <div className="full-height">
                 <Route exact path='/' render={() => (
                     <div className="full-height">
-                        <TopBar mode="scroll-mode"/>
-                        <Home/>
+                        <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="scroll-mode"/>
+                        <Home content={content.home}/>
                         <About/>
                         <SegmentBar bgimg="bgimg-2" text="PRODUCT"/>
                         <DescriptionBar/>
@@ -31,7 +42,7 @@ class App extends Component {
                 )}/>
                 <Route exact path='/demo' render={() => (
                     <div className="full-height">
-                        <TopBar mode="normal-mode"/>
+                        <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="normal-mode"/>
                         <Demo/>
                     </div>
                 )}/>

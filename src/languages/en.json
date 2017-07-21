@@ -1,0 +1,17 @@
+{
+    "toolBar": {
+        "home": "HOME",
+        "demo": "DEMO",
+        "recruitment": "RECRUITMENT",
+        "contact": "CONTACT",
+        "login": "LOGIN",
+        "language": "ENGLISH"
+    },
+    "home": {
+        "title": "Video Image Transmission And Identification",
+        "smallTitle": "Designed for geeks and developers",
+        "descriptionOne": "Easy to learn, only few lines of code",
+        "descriptionTwo": "Real-time interaction, robust, suitable for engineering applications",
+        "descriptionThree": "Interface rich, to satisfy more user needs"
+    }
+}

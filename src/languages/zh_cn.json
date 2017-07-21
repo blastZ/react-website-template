@@ -1,0 +1,17 @@
+{
+    "toolBar": {
+        "home": "主页",
+        "demo": "案例",
+        "recruitment": "招聘信息",
+        "contact": "联系方式",
+        "login": "登录",
+        "language": "中文"
+    },
+    "home": {
+        "title": "视频图像传输与识别",
+        "smallTitle": "专为极客和开发者设计",
+        "descriptionOne": "上手简单，仅需几行代码",
+        "descriptionTwo": "实时性交互，鲁棒性强，适合工程应用",
+        "descriptionThree": "接口丰富，满足更多用户需求"
+    }
+}

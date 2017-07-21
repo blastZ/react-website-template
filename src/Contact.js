@@ -2,7 +2,19 @@ import React, {Component} from 'react'
 
 class Contact extends Component {
     componentDidMount() {
+        window.initMap = this.initMap
+        this.loadBMapJS("http://api.map.baidu.com/api?v=2.0&ak=rpP09A0sT3HDUbUT9p2PjxyjpVf2QQwq&callback=initMap")
+    }
 
+    loadBMapJS = (src) => {
+        const ref = window.document.getElementsByTagName('script')[0]
+        const script = window.document.createElement('script')
+        script.src = src
+        script.async = true
+        ref.parentNode.insertBefore(script, ref)
+    }
+
+    initMap = () => {
         const map = new window.BMap.Map("map")
         const point = new window.BMap.Point(120.378103, 30.310405)
         map.centerAndZoom(point, 15)
@@ -11,7 +23,6 @@ class Contact extends Component {
         map.disableDragging()
         map.disableScrollWheelZoom()
         map.disableDoubleClickZoom()
-
     }
 
     sendMessage = () => {
