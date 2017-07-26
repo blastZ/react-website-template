@@ -14,6 +14,10 @@ class BottomBar extends Component {
                     <i className="fa fa-twitter w3-hover-opacity"></i>
                     <i className="fa fa-linkedin w3-hover-opacity"></i>
                 </div>
+                <div>
+                    <p>浙ICP备15031759号</p>
+                    <img src={require("./imgs/record.png")}/><a className="a-hover" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011802000395"> 浙公网安备33011802000395号</a>
+                </div>
             </div>
         )
     }
