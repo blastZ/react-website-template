@@ -94,47 +94,40 @@ class ImageView extends Component {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
         xhr.responseType = "blob";
-        xhr.onreadystatechange = function(e) {
-            if(xhr.readyState === XMLHttpRequest.DONE) {
-                if(xhr.status === 200) {
-                    var imgBlob = xhr.response;
-                    var fd = new FormData();
-                    fd.append('file', imgBlob);
-                    var xhr2 = new XMLHttpRequest();
-                    xhr2.open("POST", "http://demo.codvision.com:16802/api/demoface");
-                    xhr2.onreadystatechange  = function(e) {
-                        if (xhr2.readyState === XMLHttpRequest.DONE) {
-                            if (xhr2.status === 200) {
-                                const data = xhr2.response;
-                                const jsonData = JSON.parse(data);
-                                if(isNew === 'new') {
-                                    that.setState((state) => {
-                                        state.imageList[state.selectedImage].resultDataOfFace = jsonData
-                                    })
-                                } else {
-                                    that.setState((state) => {
-                                        state.imageList[index].resultDataOfFace = jsonData
-                                    })
-                                }
-                                that.props.onShowResult(jsonData)
-                            } else {
-                                console.log('face post wrong!')
-                            }
-                        } else {
-                            //when the post failed add invalid image to resultDataOfFace
-                            that.setState((state) => {
-                                state.imageList[state.selectedImage].resultDataOfFace = {similarity: 'Invalid Image'}
-                            })
-                            that.props.onShowResult({})
-                        }
-                    }
-                    xhr2.send(fd);
+        xhr.onload = function() {
+            var imgBlob = xhr.response;
+            var fd = new FormData();
+            fd.append('file', imgBlob);
+            var xhr2 = new XMLHttpRequest();
+            xhr2.open("POST", "http://demo.codvision.com:16802/api/demoface");
+            xhr2.onload = function() {
+                const data = xhr2.response;
+                const jsonData = JSON.parse(data);
+                if(isNew === 'new') {
+                    that.setState((state) => {
+                        state.imageList[state.selectedImage].resultDataOfFace = jsonData
+                    })
                 } else {
-                    console.log('face get wrong!')
+                    that.setState((state) => {
+                        state.imageList[index].resultDataOfFace = jsonData
+                    })
                 }
+                that.props.onShowResult(jsonData);        
             }
-        }
-        xhr.send()
+            xhr2.onerror = function() {
+                console.log('post error');
+                //when the post failed add invalid image to resultDataOfFace
+                that.setState((state) => {
+                    state.imageList[state.selectedImage].resultDataOfFace = {similarity: 'Invalid Image'};
+                });
+                that.props.onShowResult({});
+            }
+            xhr2.send(fd);
+        };
+        xhr.onerror = function() {
+            console.log('face get wrong!');
+        };
+        xhr.send();
     }
 
     sendFileRequest = (url, index, isNew) => {
@@ -142,46 +135,39 @@ class ImageView extends Component {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
         xhr.responseType = "blob";
-        xhr.onreadystatechange = function(e) {
-            if(xhr.readyState === XMLHttpRequest.DONE) {
-                if(xhr.status === 200) {
-                    var imgBlob = xhr.response;
-                    var fd = new FormData();
-                    fd.append('file', imgBlob);
-                    var xhr2 = new XMLHttpRequest();
-                    xhr2.open("POST", "http://demo.codvision.com:16802/api/demofile");
-                    xhr2.onreadystatechange  = function(e) {
-                        if (xhr2.readyState === XMLHttpRequest.DONE) {
-                            if (xhr2.status === 200) {
-                                const data = xhr2.response;
-                                const jsonData = JSON.parse(data);
-                                if(isNew === 'new') {
-                                    that.setState((state) => {
-                                        state.imageList[state.selectedImage].resultData = jsonData
-                                    })
-                                } else {
-                                    that.setState((state) => {
-                                        state.imageList[index].resultData = jsonData
-                                    })
-                                }
-                                that.props.onShowResult(jsonData)
-                            } else {
-                                console.log('file post wrong!')
-                            }
-                        } else {
-                            //post failed set number=0 to end the process and show the canvas
-                            that.setState((state) => {
-                                state.imageList[state.selectedImage].resultData = {number: 0}
-                            })
-                            that.props.onShowResult({})
-                        }
-                    }
-                    xhr2.send(fd);
+        xhr.onload = function() {
+            var imgBlob = xhr.response;
+            var fd = new FormData();
+            fd.append('file', imgBlob);
+            var xhr2 = new XMLHttpRequest();
+            xhr2.open("POST", "http://demo.codvision.com:16802/api/demofile");
+            xhr2.onload = function() {
+                const data = xhr2.response;
+                const jsonData = JSON.parse(data);
+                if(isNew === 'new') {
+                    that.setState((state) => {
+                        state.imageList[state.selectedImage].resultData = jsonData
+                    })
                 } else {
-                    console.log('file get wrong!')
+                    that.setState((state) => {
+                        state.imageList[index].resultData = jsonData
+                    })
                 }
+                that.props.onShowResult(jsonData)
             }
-        }
+            xhr2.onerror = function() {
+                console.log('post failed');
+                //post failed set number=0 to end the process and show the canvas
+                that.setState((state) => {
+                    state.imageList[state.selectedImage].resultData = {number: 0}
+                })
+                that.props.onShowResult({})
+            }
+            xhr2.send(fd);
+        };
+        xhr.onerror = function() {
+            console.log('file get wrong!');
+        };
         xhr.send();
     }
 

@@ -35,7 +35,7 @@ class TopBar extends Component {
                 <div className={`${this.props.mode === 'scroll-mode' ? 'w3-bar w3-text-white' : 'w3-bar w3-white w3-card'}`} id="navBar">
                     <a className="w3-bar-item w3-hide-medium w3-hide-large w3-button w3-right" onClick={this.toggleNavBar}><i className="fa fa-bars"></i></a>
                     <a href="http://www.codvision.com" className="w3-bar-item w3-button w3-hover-light-grey"><i className="fa fa-home" aria-hidden="true"></i> {content.home}</a>
-                    <a href="http://demo.codvision.com:16802/demo" className="w3-bar-item w3-button w3-hover-light-grey w3-hide-small"><i className="fa fa-th" aria-hidden="true"></i> {content.demo}</a>
+                    <Link to="/demo" className="w3-bar-item w3-button w3-hover-light-grey w3-hide-small"><i className="fa fa-th" aria-hidden="true"></i> {content.demo}</Link>
                     <a className="w3-bar-item w3-button w3-hover-light-grey w3-hide-small"><i className="fa fa-user" aria-hidden="true"></i> {content.recruitment}</a>
                     <a className="w3-bar-item w3-button w3-hover-light-grey w3-hide-small"><i className="fa fa-envelope" aria-hidden="true"></i> {content.contact}</a>
                     <a className="w3-bar-item w3-button w3-right w3-hover-light-grey w3-hide-small"><i className="fa fa-sign-in" aria-hidden="true"></i> {content.login}</a>
