@@ -13,5 +13,12 @@
         "descriptionOne": "Easy to learn, only few lines of code",
         "descriptionTwo": "Real-time interaction, robust, suitable for engineering applications",
         "descriptionThree": "Interface rich, to satisfy more user needs"
+    },
+    "contact": {
+        "title": "Contact",
+        "smallTitle": "have any questions, welcom to contact us",
+        "location": "杭州经济技术开发区白杨街道6号大街452号2幢A715-717号房",
+        "phone": "Phone: 0571-87796713",
+        "email": "Email: sales@codvision.com"
     }
 }

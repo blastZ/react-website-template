@@ -1,18 +1,17 @@
-import React, { Component } from 'react'
-import './css/w3.css'
-import './css/App.css'
-import TopBar from './TopBar.js'
-import Home from './Home.js'
-import About from './About.js'
-import SegmentBar from './SegmentBar.js'
-import Product from './Product.js'
-import Contact from './Contact.js'
-import DescriptionBar from './DescriptionBar.js'
-import BottomBar from './BottomBar.js'
-import Demo from './demo/Demo.js'
-import { Route } from 'react-router-dom'
-import En from './languages/en.json'
-import Zh_cn from './languages/zh_cn.json'
+import React, { Component } from 'react';
+import './css/w3.css';
+import TopBar from './TopBar';
+import Recruitment from './recruitment/Recruitment';
+import Home from './Home';
+import About from './About';
+import SegmentBar from './SegmentBar';
+import Product from './Product';
+import Contact from './Contact';
+import DescriptionBar from './DescriptionBar';
+import BottomBar from './BottomBar';
+import { Route } from 'react-router-dom';
+import En from './languages/en.json';
+import Zh_cn from './languages/zh_cn.json';
 
 class App extends Component {
     state = {
@@ -32,18 +31,25 @@ class App extends Component {
                         <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="scroll-mode"/>
                         <Home content={content.home}/>
                         <About/>
-                        <SegmentBar bgimg="bgimg-2" text="PRODUCT"/>
+                        <SegmentBar bgimg="bgimg-2" text="案例展示"/>
                         <DescriptionBar/>
                         <Product/>
-                        <SegmentBar bgimg="bgimg-3" text="CONTACT"/>
-                        <Contact/>
                         <BottomBar/>
                     </div>
                 )}/>
-                <Route exact path='/demo' render={() => (
+                <Route exact path="/contact" render={() => (
+                    <div className="full-height bgimg-3 w3-text-white" style={{paddingTop: '10px'}}>
+                        <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="scroll-mode"/>
+                        <div style={{marginTop: '45px'}}></div>
+                        <Contact content={content.contact}/>
+                        <BottomBar/>
+                    </div>
+                )}/>
+                <Route exact path="/recruitment" render={() => (
                     <div className="full-height">
-                        <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="normal-mode"/>
-                        <Demo/>
+                        <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="scroll-mode"/>
+                        <Recruitment/>
+                        <BottomBar/>
                     </div>
                 )}/>
             </div>

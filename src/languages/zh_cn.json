@@ -13,5 +13,12 @@
         "descriptionOne": "上手简单，仅需几行代码",
         "descriptionTwo": "实时性交互，鲁棒性强，适合工程应用",
         "descriptionThree": "接口丰富，满足更多用户需求"
+    },
+    "contact": {
+        "title": "联系方式",
+        "smallTitle": "有任何疑问，欢迎联系我们",
+        "location": "杭州经济技术开发区白杨街道6号大街452号2幢A715-717号房",
+        "phone": "联系电话: 0571-87796713",
+        "email": "邮箱: sales@codvision.com"
     }
 }
