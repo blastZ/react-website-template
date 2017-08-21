@@ -1,9 +1,9 @@
 {
     "toolBar": {
-        "home": "主页",
-        "demo": "案例",
-        "recruitment": "招聘信息",
-        "contact": "联系方式",
+        "home": "技术",
+        "demo": "方案",
+        "recruitment": "招聘",
+        "contact": "简介",
         "login": "登录",
         "language": "中文"
     },

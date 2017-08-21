@@ -32,14 +32,14 @@ class Contact extends Component {
     render() {
         const content = this.props.content;
         return (
-            <div className="w3-content w3-container w3-padding-64 w3-margin-top" id="contact">
+            <div className="w3-content w3-container w3-margin-top" id="contact" style={{paddingTop: '64px'}}>
                 <h3 className="w3-center">{content.title}</h3>
                 <p className="w3-center"><em>{content.smallTitle}</em></p>
-                <div style={{marginTop: '64px'}}>
+                <div id="wb-contact-content-parent" style={{marginTop: '64px'}}>
                     <div>
                         <div id="map" style={{width: '100%', height: '400px', position: 'relative', overflow: 'hidden'}} className="w3-round-large"></div>
                     </div>
-                    <div className="w3-padding-32">
+                    <div id="wb-contact-content" className="w3-padding-32">
                         <div className="w3-large w3-margin-bottom">
                             <p><i className="fa fa-map-marker fa-fw w3-margin-right w3-xlarge"></i>{`杭州经济技术开发区白杨街道6号大街452号2幢A715-717号房`}</p>
                             <p><i className="fa fa-phone fa-fw w3-margin-right w3-xlarge"></i>{ content.phone}</p>

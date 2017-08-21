@@ -22,7 +22,7 @@ html, body {
 }
 
 .bgimg-1 {
-    background-image: url("../imgs/bg.png");
+    background-image: url("../imgs/bg.jpg");
     min-height: 100%;
 }
 
@@ -189,4 +189,124 @@ ul {
 
 .wb-margin-top-64 {
     margin-top: 64px;
+}
+
+@media screen and (min-width: 1122px) {
+    .wb-hover-card {
+        width: 41%;
+        lineHeight: 1.71428571;
+        margin: 100px 50px;
+        transition: all 0.3s ease;
+        border: 2px solid #e7e7e7;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 1121px) {
+    .wb-hover-card {
+        width: 80%;
+        lineHeight: 1.71428571;
+        margin: 60px 50px;
+        transition: all 0.3s ease;
+        border: 2px solid #e7e7e7;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (min-width: 548px) {
+    .wb-hover-card img {
+        margin-bottom: 10px;
+        max-width: 400px;
+        max-height: 225px;
+        max-width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 548px) {
+    .wb-hover-card img {
+        margin-bottom: 10px;
+        max-width: 200px;
+        max-height: 125px;
+        max-width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+.wb-hover-card p {
+    padding: 16px 64px;
+}
+
+.wb-hover-card h4 {
+    color: #777;
+    padding-top: 28px;
+    padding-bottom: 24px;
+}
+
+.wb-hover-card:hover {
+    transition: all 0.3s ease;
+    border: 2px solid #42b7ca !important;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08);
+}
+
+@media screen and (min-width: 1760px) {
+    .wb-home-text {
+        top: 35% !important;
+        white-space: nowrap !important;
+    }
+}
+
+@media screen and (max-width: 1759px) {
+    .wb-home-text {
+        top: 40% !important;
+        white-space: nowrap !important;
+    }
+
+    .wb-home-text h1 {
+        font-size: 30px;
+    }
+
+    .wb-home-text h4 {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1133px) {
+    #wb-recruitment-content {
+        max-width: 700px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #wb-recruitment-content {
+        max-width: 500px;
+    }
+
+    #wb-recruitment-body {
+        padding-left: 25px !important;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    #wb-recruitment-content {
+        max-width: 300px;
+    }
+
+    #wb-recruitment-head {
+        font-size: 25px !important;
+    }
+
+    #wb-recruitment-body {
+        padding-left: 25px !important;
+    }
+
+    #wb-recruitment-body h3 {
+        font-size: 19px !important;
+    }
+
+    #wb-recruitment-body li {
+        font-size: 14px !important;
+    }
 }

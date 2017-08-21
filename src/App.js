@@ -31,14 +31,13 @@ class App extends Component {
                         <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="scroll-mode"/>
                         <Home content={content.home}/>
                         <About/>
-                        <SegmentBar bgimg="bgimg-2" text="案例展示"/>
-                        <DescriptionBar/>
+                        <SegmentBar bgimg="bgimg-2" text="核心技术展示"/>
                         <Product/>
                         <BottomBar/>
                     </div>
                 )}/>
                 <Route exact path="/contact" render={() => (
-                    <div className="full-height bgimg-3 w3-text-white" style={{paddingTop: '10px'}}>
+                    <div className="bgimg-3 w3-text-white" style={{paddingTop: '10px'}}>
                         <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="scroll-mode"/>
                         <div style={{marginTop: '45px'}}></div>
                         <Contact content={content.contact}/>

@@ -85,11 +85,11 @@ class Recruitment extends Component {
                 <div className="w3-center flex-box w3-container" style={{width: '100%', height: '300px', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                     <h1 className="w3-text-white w3-wide">码全科技招聘信息</h1>
                 </div>
-                <div className="w3-content w3-padding-64">{
+                <div className="w3-content w3-padding-64" id="wb-recruitment-content">{
                     this.state.recruitments.map((recruitment, index) => (
                         <div key={recruitment.title + index} className={`w3-row w3-card-4 w3-round w3-text-white wb-blue ${index === 0 ? null : 'wb-margin-top-64'}`} style={{position: 'relative'}}>
-                           <h2 className="w3-row black-blue" style={{margin: '0', padding: '32px'}}>{recruitment.title}</h2>
-                           <div className="w3-container" style={{paddingLeft: '64px', paddingTop: '32px', paddingBottom: '80px'}}>
+                           <h2 id="wb-recruitment-head" className="w3-row black-blue" style={{margin: '0', padding: '32px'}}>{recruitment.title}</h2>
+                           <div id="wb-recruitment-body" className="w3-container" style={{paddingLeft: '64px', paddingTop: '32px', paddingBottom: '80px'}}>
                                <h3>工作职责</h3>
                                <ol>{
                                    recruitment.bodyOne.map((body) => (

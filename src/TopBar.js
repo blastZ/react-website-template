@@ -50,7 +50,7 @@ class TopBar extends Component {
                     <a onClick={this.props.onChangeLanguage} className="w3-bar-item w3-button w3-right w3-hover-light-grey w3-hide-small"><i className="fa fa-globe" aria-hidden="true"></i> {content.language}</a>
                 </div>
                 <div className={`w3-bar-block w3-hide w3-hide-medium w3-hide-large w3-white w3-card-2" id="small-nav-bar ${this.state.showSmallNavBar ? 'w3-show' : null}`}>
-                    <a onClick={this.props.onChangeLanguage} className="w3-bar-item w3-button"><i className="fa fa-globe" aria-hidden="true"></i> {content.language}</a>
+                    {/*<a onClick={this.props.onChangeLanguage} className="w3-bar-item w3-button"><i className="fa fa-globe" aria-hidden="true"></i> {content.language}</a>*/}
                     <a href="http://demo.codvision.com:16802/demo" className="w3-bar-item w3-button">{content.demo}</a>
                     <Link to="/recruitment" className="w3-bar-item w3-button">{content.recruitment}</Link>
                     <Link to="/contact" className="w3-bar-item w3-button">{content.contact}</Link>
