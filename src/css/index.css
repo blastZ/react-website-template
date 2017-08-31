@@ -11,6 +11,10 @@ html, body {
     color: #777;
 }
 
+a {
+    text-decoration: none;
+}
+
 .full-height {
     height: 100%;
     max-height: 100%;
@@ -149,6 +153,11 @@ ul {
     text-decoration: underline;
 }
 
+.wb-hoverable:hover {
+    cursor: pointer !important;
+    color: #9cd3ff !important;
+}
+
 @media screen and (max-width: 900px) {
     #demo-view {
         flex-direction: column;
@@ -193,9 +202,8 @@ ul {
 
 @media screen and (min-width: 1122px) {
     .wb-hover-card {
-        width: 41%;
         lineHeight: 1.71428571;
-        margin: 100px 50px;
+        margin: 80px 50px;
         transition: all 0.3s ease;
         border: 2px solid #e7e7e7;
         border-radius: 10px;
@@ -308,5 +316,87 @@ ul {
 
     #wb-recruitment-body li {
         font-size: 14px !important;
+    }
+}
+
+.wb-hide {
+    visibility: hidden;
+}
+
+.wb-show {
+    visibility: visible;
+}
+
+.wb-start-animation {
+    animation-play-state: running
+}
+
+.wb-popups {
+    animation-name: popups;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+}
+
+.wb-move-from-bottom {
+    animation-name: moveFromBottom;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}
+
+.wb-move-from-top {
+    animation-name: moveFromTop;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}
+
+.wb-move-from-left {
+    animation-name: moveFromLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}
+
+@keyframes popups {
+    0% {
+        opacity: 0.1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes moveFromBottom {
+    0% {
+        transform: translateY(100%);
+        opacity: 0.1;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveFromTop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0.1;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0.1;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
     }
 }

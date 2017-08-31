@@ -1,0 +1,1851 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Test Demo</title>
+
+<script language="javascript" type="text/javascript">
+    var ocx;
+
+	function Onlogin(getid,getpw) {
+	    _appLog("login:");
+        var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerLogin(getid,getpw);
+    }
+
+	function Onforcelogin(getid,getpw) {
+	    _appLog("login:");
+        var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerForceLogin(getid,getpw);
+    }
+
+//---------------------------------------------------------------------------------------------------
+	function Ontest(gettxt) {
+	    _appLog2("输入:");
+		var txt = gettxt;
+		_appLog2(txt);
+    }
+//---------------------------------------------------------------------------------------------------
+	function TellerSendMsg(Msg)
+    {
+	    _appLog2("发送消息给客户:");
+		_appLog2(Msg);
+        var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerSendMsgToTerminal(Msg);//发送消息给客户
+    }
+//---------------------------------------------------------------------------------------------------
+	function TellerSendFileToTerminal(FileName)
+    {
+	    _appLog2("发送文件给客户:");
+		_appLog2(FileName);
+        var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerSendFileToTerminal(FileName);//发送文件给客户
+    }
+
+	function TellerSendFileToTeller(FileName)
+	{
+	   	_appLog2("发送文件给柜员:");
+		_appLog2(FileName);
+        var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerSendFileToTeller(FileName);//发送文件给客户
+	}
+//------------------------------------------------------------------------
+	function TellerSendMsgToTeller(gettxt)
+    {
+	    _appLog2("发送消息给柜员:");
+		var txt = gettxt;
+		var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerSendMsgToTeller(txt);
+		_appLog2(txt);
+    }
+
+
+	function Onlogout() {
+	    _appLog("logout:");
+        var ocx2 = document.getElementById("ocx1");
+
+        ocx2.mediaTellerLogout();
+    }
+
+	function OnWindow(windid,size)
+	{
+	    var ocx2 = document.getElementById("ocx1");
+	   _appLog(windid);
+	   _appLog(size);
+
+		if(size == 0)
+		{
+		   ocx2.setWindow(windid,-1,0,0,1920,1080,0);
+		}
+		if(size == 1)
+		{
+		   ocx2.setWindow(windid,-1,0,0,1280,720,0);
+		}
+		if(size == 2)
+		{
+		   ocx2.setWindow(windid,-1,0,0,704,576,0);
+		}
+		if(size == 3)
+		{
+		   ocx2.setWindow(windid,-1,0,0,640,480,0);
+		}
+		if(size == 4)
+		{
+		   ocx2.setWindow(windid,-1,0,0,352,288,0);
+		}
+	}
+
+	function OnAnswer() {
+	    _appLog("answer:");
+	    var ocx2 = document.getElementById("ocx1");
+
+	    var ocx2 = document.getElementById("ocx1");
+		var str = ocx2.GetScreenSize(0);
+		_appLog(str);
+		var json=JSON.parse(str);
+		//alert(str);
+		ocx2.setWindow(0,-1,json.w/5*4,0,json.w/5,json.h/3,0);
+		//alert(str);
+
+		ocx2.setDialogTitle(0,"local");
+		//alert(str);
+		ocx2.setWindow(1,-1,json.w/5*4,json.h/3*1,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(1,"remote");
+		ocx2.setWindow(2,-1,json.w/5*4,json.h/3*2,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(2,"third");
+
+        var result = ocx2.mediaTellerAnswer();//应答接口              !!!
+		//_appLog(result);
+    }
+
+	function OnStatus() {
+	    _appLog("status2:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerSayBusy();//状态设置事件 示忙             !!!
+    }
+	function OnStatus1()
+	{
+	    _appLog("status1:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerSayIdle();//状态设置事件  示闲           !!!
+    }
+	function OnHangup() {
+	    _appLog("hangup:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerRelease();//挂断接口                   !!!
+    }
+	function OnTransfer() {
+	    _appLog("transfer:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerTransfer(0,1,0);//呼叫转移接口
+    }
+
+	function OnVoice() {
+	    _appLog("voice:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerMute();//静音接口
+    }
+
+	function OnUnVoice() {
+	    _appLog("unvoice:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerUnMute();//取消静音接口
+    }
+
+	function OnHold() {
+	    _appLog("hold:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerHold();   //保持
+    }
+
+	function OnRecover() {
+		_appLog("recover:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerUnHold();     //取消保持
+		_appLog("recover end");
+    }
+	function TellerCallInner(callId, mode)
+	{
+		_appLog("TellerCallInner:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerCallInner(callId, mode);     //内部呼叫
+	}
+
+	function TellerCall(callId, mode)
+	{
+		_appLog("TellerCall:");
+	    var ocx2 = document.getElementById("ocx1");
+		var str = ocx2.GetScreenSize(0);
+		var json=JSON.parse(str);
+	    ocx2.setWindow(0,-1,json.w/5*4,0,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(0,"local");
+		ocx2.setWindow(1,-1,json.w/5*4,json.h/3*1,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(1,"remote");
+		ocx2.setWindow(2,-1,json.w/5*4,json.h/3*2,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(2,"third");
+
+        ocx2.mediaTerminalCall(callId, mode,2);
+	}
+
+	function TellerTripartiteCall(mode)
+	{
+		_appLog("TellerTripartiteCall:");
+		var ocx2 = document.getElementById("ocx1");
+		ocx2.mediaTellerTripartiteCall(mode);//三方通话
+	}
+
+	function TellerSayRest(Duration,RestReason) {
+		_appLog("rest:");
+		var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerSayRest(Duration,RestReason);//休息
+    }
+
+	function Onkk() {
+		_appLog("kk:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerCancelRest();//取消休息
+    }
+
+	function OnStartAudio() {
+		_appLog("StartRecordAudio:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerStartRecordAudio();//开始录音
+		_appLog("ok");
+    }
+
+	function OnStopAudio() {
+		_appLog("StopAudio:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerStopRecordAudio();//停止录音
+		_appLog("ok");
+    }
+	function OnStartScreen() {
+		_appLog("StartScreen:");
+	    var ocx2 = document.getElementById("ocx1");
+		var str = ocx2.GetScreenSize(1);
+		if(str!== '')
+		{
+        var status = ocx2.mediaTellerRecordMultiScreen(1);//开始录屏
+		_appLog(status);
+		_appLog("ok");
+		}
+		else
+		{
+		var status = ocx2.mediaTellerStartRecordScreen(1);//开始录屏
+		_appLog(status);
+		_appLog("ok");
+		}
+    }
+	function OnStopScreen() {
+		_appLog("StopScreen:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerStopRecordScreen();//停止录屏
+		_appLog("ok");
+    }
+	function OnShot() {
+		_appLog("Shot:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerSnapShot();//拍照
+    }
+	function TellerRecvFile(FileID,Path) {
+		_appLog("TellerRecvFile:");
+	    var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerRecvFile(FileID,Path);//柜员接收文件
+    }
+	function TellerStartSupervise(staffId, mode)
+	{
+		_appLog("TellerStartSupervise:");
+		var ocx2 = document.getElementById("ocx1");
+		var str = ocx2.GetScreenSize(0);
+		var json=JSON.parse(str);
+	    ocx2.setWindow(0,-1,json.w/5*4,0,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(0,"local");
+		ocx2.setWindow(1,-1,json.w/5*4,json.h/3*1,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(1,"remote");
+		ocx2.setWindow(2,-1,json.w/5*4,json.h/3*2,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(2,"third");
+
+		ocx2.mediaTellerSuperviseCall(staffId, mode);//对指定柜员进行监听
+	}
+	function TellerStopSuperviseOrInsert(staffId)
+	{
+		_appLog("TellerStopSuperviseOrInsert:");
+		var ocx2 = document.getElementById("ocx1");
+		ocx2.mediaTellerStopSuperviseOrInsert(staffId);//对指定柜员停止监听和插入操作
+	}
+	function TellerInsertCall(staffId, mode)
+	{
+		_appLog("TellerInsertCall:");
+		var ocx2 = document.getElementById("ocx1");
+		var str = ocx2.GetScreenSize(0);
+		var json=JSON.parse(str);
+		ocx2.setWindow(0,-1,json.w/5*4,0,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(0,"local");
+		ocx2.setWindow(1,-1,json.w/5*4,json.h/3*1,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(1,"remote");
+		ocx2.setWindow(2,-1,json.w/5*4,json.h/3*2,json.w/5,json.h/3,0);
+		ocx2.setDialogTitle(2,"third");
+		ocx2.mediaTellerInsertCall(staffId, mode);//对指定柜员进行插入操作
+	}
+
+	function TellerSwitchSuperviseOrInsert()
+	{
+		_appLog("TellerSwitchSuperviseOrInsert:");
+		var ocx2 = document.getElementById("ocx1");
+		ocx2.mediaTellerSwitchSuperviseOrInsert();//对指定柜员质检操作进行切换
+	}
+
+	function TellerRequestShare()
+	{
+		_appLog("TellerRequestShare:");
+		var ocx2 = document.getElementById("ocx1");
+		var str = ocx2.GetScreenSize(0);
+		var json=JSON.parse(str);
+		ocx2.setWindow(3,-1,0,0,json.w/5,json.h/3,0);
+		ocx2.mediaTellerRequestShareDesktop();//柜员请求客户侧共享桌面
+	}
+
+	function TellerStopDeskShare()
+	{
+		_appLog("TellerStopDeskShare:");
+		var ocx2 = document.getElementById("ocx1");
+		ocx2.mediaTellerStopShareDesktop();//柜员结束桌面共享
+	}
+
+
+	function TellerRequestRemoteControl()
+	{
+		_appLog("TellerRequestRemoteControl:");
+		var ocx2 = document.getElementById("ocx1");
+		ocx2.mediaTellerRequestRemoteControl();//柜员请求远程控制
+	}
+
+	function TellerStopRemoteControl()
+	{
+		_appLog("TellerStopRemoteControl:");
+		var ocx2 = document.getElementById("ocx1");
+		ocx2.mediaTellerStopRemoteControl();//停止远程控制
+	}
+
+
+
+
+	function _clearLog()
+	{
+		var _logElem = document.getElementById("VTMCtlPage.LogInfo");
+		_logElem.value = "";
+	}
+
+	function vtmValueOf(elemId)
+	{
+		var _elem = document.getElementById(elemId);
+		if(null == _elem || undefined == _elem || ("text" != _elem.type && "textarea" != _elem.type && "select-one" != _elem.type))
+		{
+			return "";
+		}
+		return _elem.value;
+	}
+
+	function _appLog(logInfo)
+	{
+		var _logElem = document.getElementById("VTMCtlPage.LogInfo");
+		_logElem.value += logInfo;
+		var putline="\n";
+		_logElem.value += putline;
+	}
+	function _appLog2(logInfo)
+	{
+		var _logElem = document.getElementById("VTMCtlPage.LogInfo2");
+		_logElem.value += logInfo;
+		var putline="\n";
+		_logElem.value += putline;
+	}
+	function Onk1(screennum) {
+	    var ocx2 = document.getElementById("ocx1");
+		var str = ocx2.GetScreenSize(screennum);
+		var result={"Category":
+		                [{"categoryId":1,"categoryName":"饮品","categoryImage":"/upload/yinpin.jpg"},
+						{"categoryId":2,"categoryName":"食品","categoryImage":"/upload/shiping.jpg"},
+						{"categoryId":3,"categoryName":"酒类","categoryImage":"/upload/jiullei.jpg"}],
+					"recommend":
+					{
+					"id":11,"productName":"统一老坛泡椒牛肉袋面香辣味110g*24袋",
+					"filenameSmall":"/upload/ty_ltpj_small.jpg",
+					"productPrice":48.0,
+					"productCost":47.5}};
+
+        var val = result.Category[0].categoryId;
+		_appLog(str);
+
+    }
+			function _closeDiv()
+		{
+			document.getElementById('TellerPage.SC_LiId').className='tab_title_items';
+
+			document.getElementById('TellerPage.IO_LiId').className='tab_title_items';
+
+			document.getElementById('TellerPage.Cllb_LiId').className='tab_title_items';
+
+			document.getElementById('TellerPage.QC_LiId').className='tab_title_items';
+
+			document.getElementById('TellerPage.IS_LiId').className='tab_title_items';
+
+
+
+			document.getElementById('SC_DivId').style.display='none';
+
+			document.getElementById('IO_DivId').style.display='none';
+
+			document.getElementById('Cllb_DivId').style.display='none';
+
+			document.getElementById('QC_DivId').style.display='none';
+
+			document.getElementById('IS_DivId').style.display='none';
+
+		}
+				function showDiv(div)
+		{
+			_closeDiv();
+			document.getElementById(div).style.display='block';
+		}
+
+	function TellerFuzzyQueryStaffsByKey(keyWord)
+	{
+	    var ocx2 = document.getElementById("ocx1");
+	    ocx2.mediaTellerFuzzyQueryStaffsByKey(keyWord);
+	}
+
+	function MediaTellerGetDetailInfoOfAll()
+	{
+	   var ocx2 = document.getElementById("ocx1");
+	   ocx2.mediaTellerGetDetailInfoOfAll();
+	}
+
+	function MediaTellerGetDetailInfo(MediaQuyTellerId)
+	{
+	   var ocx2 = document.getElementById("ocx1");
+	  ocx2.mediaTellerGetDetailInfo(MediaQuyTellerId);
+	}
+
+    function queryLoginServices()
+	{
+	     var ocx2 = document.getElementById("ocx1");
+		 ocx2.mediaQueryLoginServices();
+	}
+
+	function TellerQueryStatictics()
+	{
+	    var ocx2 = document.getElementById("ocx1");
+		ocx2.mediaTellerQueryStatictics();
+	}
+
+	function queryServicesByStaffId(staffId2)
+    {
+         //查询业务类型列表
+		 var ocx2 = document.getElementById("ocx1");
+		 ocx2.mediaTellerGetServiceInfo(staffId2);
+    }
+
+    function queryStaffsByServiceId(serviceId)
+    {
+      //查询指定业务类型的柜员列表
+	  var ocx2 = document.getElementById("ocx1");
+	  ocx2.mediaQueryStaffsByServiceId(serviceId);
+    }
+
+    function TellerQueryServiceWaitNum(serviceId2)
+    {
+      //查询指定业务的当前排队人数
+	  var ocx2 = document.getElementById("ocx1");
+	  ocx2.mediaTellerQueryServiceWaitNum(serviceId2);
+    }
+
+	function TellerQueryServiceLevelWaitNum(serviceId2)
+    {
+      //查询指定业务的当前排队人数
+	  var ocx2 = document.getElementById("ocx1");
+	  ocx2.mediaTellerQueryServiceLevelWaitNum(serviceId2);
+    }
+
+
+
+    window.onload = function() {
+//createOcxAddToDiv----------------------------------------------------------------
+
+		setTimeout(function() {
+            ocx = document.createElement("object");
+            ocx.setAttribute("id", "ocx1");
+            ocx.setAttribute("height", 100);
+            ocx.setAttribute("width", 51);
+            //ocx.setAttribute("classid", "clsid:2B2B4241-6CF0-4FBC-9C34-8EE1B08F84AC");
+    		ocx.setAttribute("classid", "clsid:886AE049-FBD8-4FA7-9835-46D95B91F0A9");
+    		var div = document.getElementById("divOcxContainer");
+    		div.appendChild(ocx);
+        }, 2000);
+		//ocx.Method2();
+    };
+
+
+    window.onunload = function() {
+	    _appLog("logout:");
+        var ocx2 = document.getElementById("ocx1");
+        ocx2.mediaTellerLogout();
+		//alert("登出成功");//删除导致异步，将会无法退出。
+		var div = document.getElementById("divOcxContainer");
+        var ocx1 = document.getElementById("ocx1");
+        div.removeChild(ocx1);
+        delete ocx;
+        //alert("销毁成功");
+    }
+
+</script>
+
+
+
+
+
+
+
+<script language="javascript" for="ocx1" event="TellerRestTimeOutEvent()" type="text/javascript">
+        //alert(status);     			  VTA休息超时事件       ok
+		_appLog("TellerRestTimeOutEvent:");
+
+</script>
+
+
+<!--信息查询事件-->
+<script language="javascript" for="ocx1" event="QueryInfoEvent(status)" type="text/javascript">
+        //alert(status);     			  VTA登陆成功事件       ok
+		_appLog("QueryInfoEvent:");
+		_appLog(status);
+
+</script>
+
+<script language="javascript" for="ocx1" event="WndLBtnDClickEvent(status)" type="text/javascript">
+        //alert(status);     			  VTA登陆成功事件       ok
+		_appLog("WndLBtnDClickEvent:");
+		_appLog(status);
+		var ocx2 = document.getElementById("ocx1");
+		var str = ocx2.GetScreenSize(0);
+		var json=JSON.parse(status);
+		_appLog(json.WndHandle);
+	    ocx2.setWindow(json.WndHandle,-1,467,345,300,300,0);
+</script>
+
+<script language="javascript" for="ocx1" event="TellerInsideCallFailEvent(status)" type="text/javascript">
+        //alert(status);     			  VTA内部呼叫失败       ok
+		_appLog("TellerInsideCallFailEvent:");
+		_appLog(status);
+
+</script>
+
+<script language="javascript" for="ocx1" event="TellerCustomerAlertingEvent()" type="text/javascript">
+        //alert(status);     			  VTA内部呼叫失败       ok
+		_appLog("TellerCustomerAlertingEvent:");
+
+</script>
+
+
+
+
+   <!--初始化控制事件-->
+<script language="javascript" for="ocx1" event="TellerLoginSuccEvent(status)" type="text/javascript">
+        //alert(status);     			  VTA登陆成功事件       ok
+		_appLog("TellerLoginSuccEvent:");
+		_appLog(status);
+
+</script>
+<script language="javascript" for="ocx1" event="TellerLoginFailEvent(status)" type="text/javascript">
+        //alert(status);  					VTA登陆失败事件        ok
+		_appLog("TellerLoginFailEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerLogoutSuccEvent()" type="text/javascript">
+        //alert("vta logout ok ");  		vta登出成功事件         ok
+	    _appLog("TellerLogoutSuccEvent:");
+		_appLog("vta Logout Success");
+</script>
+<script language="javascript" for="ocx1" event="TellerLogoutFailedEvent(status)" type="text/javascript">
+        //alert(status); 					vta登出失败事件         ok
+		_appLog("TellerLogoutFailedEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="NoConfigFileEvent()" type="text/javascript">
+        alert("config not found");         //    找不到配置文件事件      未知
+	    _appLog("NoConfigFileEvent:");
+	    _appLog("config not found");
+</script>
+<script language="javascript" for="ocx1" event="ConfigParamErrorEvent()" type="text/javascript">
+        alert("文件错误事件");        		//	配置文件参数错误事件，需要添加，暂时没有做处理             未知
+	    _appLog("ConfigParamErrorEvent:");
+	    _appLog("文件错误事件");
+</script>
+<script language="javascript" for="ocx1" event="OcxInitSuccEvent()" type="text/javascript">
+        //alert("ocx初始化成功");                 ocx 初始化成功事件      ok
+	    _appLog("OcxInitSuccEvent:");
+	    _appLog("ocx初始化成功");
+</script>
+<script language="javascript" for="ocx1" event="OcxInitFailedEvent()" type="text/javascript">
+        alert("控件初始化失败");          //     ocx 控件初始化失败事件，暂时没有做处理           未知
+	    _appLog("OcxInitFailedEvent:");
+	    _appLog("控件初始化失败");
+</script>
+
+
+
+   <!--呼叫控制事件-->
+<script language="javascript" for="ocx1" event="TellerTalkingEvent(status)" type="text/javascript">
+        //alert("status change ");             通话建立事件           ok
+		_appLog("TellerTalkingEvent:");
+		_appLog(status);
+
+</script>
+<script language="javascript" for="ocx1" event="TellerAlertingEvent(status)" type="text/javascript">
+        alert("柜员振铃事件"); 				//	呼叫振铃事件       ok
+		_appLog("TellerAlertingEvent:");
+		_appLog(status);
+		var json=JSON.parse(status);
+        var obj=document.getElementById('SelectCallId');
+        obj.options.add(new Option(json.remote_number,json.remote_number));
+</script>
+<script language="javascript" for="ocx1" event="TellerCallingReleaseEvent(status)" type="text/javascript">
+        //alert("通话挂断事件"); 				   	呼叫挂断事件      ok
+		_appLog("TellerCallingReleaseEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerBusyEvent(status)" type="text/javascript">
+        //alert("柜员进入忙态事件 ");            //  柜员进入忙态事件           ok
+		_appLog("TellerBusyEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerNoAnswerEvent(status)" type="text/javascript">
+        //alert("柜员久不应答事件 ");            //  柜员久不应答事件           未知
+		_appLog("TellerNoAnswerEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerHoldEvent(status)" type="text/javascript">
+         //alert("通话保持事件"); 				  	通话保持事件      ok
+		_appLog("TellerHoldEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerTransferSuccEvent(status)" type="text/javascript">
+         //alert("转移成功事件"); 				  	转移成功事件      ok
+		_appLog("TellerTransferSuccEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerTransferFailEvent(status)" type="text/javascript">
+         //alert("转移失败事件"); 				  	转移失败事件      未知
+		_appLog("TellerTransferFailEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerMuteEvent(status)" type="text/javascript">
+         //alert("静音事件"); 				    	静音事件      未知
+		_appLog("TellerMuteEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerCancelMuteEvent(status)" type="text/javascript">
+         //alert("取消静音事件"); 				  	取消静音事件      未知
+		_appLog("TellerCancelMuteEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerConferenceEvent(status)" type="text/javascript">
+         //alert("柜员三方通话成功"); 				  	柜员三方通话成功      未知
+		_appLog("TellerConferenceEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerCallOutFailedEvent(status)" type="text/javascript">
+         //alert("外呼失败事件"); 				  	外呼失败事件      未知
+		_appLog("TellerCallOutFailedEvent:");
+		_appLog(status);
+</script>
+
+
+   <!--状态控制事件-->
+<script language="javascript" for="ocx1" event="TellerBusyEvent(status)" type="text/javascript">
+        //alert("status change ");       示忙事件           ok
+		_appLog("TellerBusyEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerIdleEvent(status)" type="text/javascript">
+        //alert("status change ");       示闲事件           ok
+		_appLog("mediaTellerIdleEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerSumEvent(status)" type="text/javascript">
+        //alert("小结态事件");              //小结态事件                   未知
+	    _appLog("mediaTellerSumEvent:");
+	    _appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerRestSuccessEvent(status)" type="text/javascript">
+        //alert("请求休息成功事件"); 					请求休息成功事件      未知
+		_appLog("TellerRestSuccessEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerCancleRestEvent(status)" type="text/javascript">
+        //alert("取消休息成功事件"); 					取消休息成功事件      未知
+		_appLog("TellerCancleRestEvent:");
+		_appLog(status);
+</script>
+
+
+
+
+   <!--质检事件-->
+<script language="javascript" for="ocx1" event="StartRecordResultEvent(status)" type="text/javascript">
+        //alert("开始录屏事件"); 					开始录屏事件      no
+		_appLog("StartRecordResultEvent:");
+		_appLog(status);
+</script>
+</script><script language="javascript" for="ocx1" event="StopRecordResultEvent(status)" type="text/javascript">
+        //alert("停止录屏事件"); 					停止录屏事件      no
+		_appLog("StopRecordResultEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="StartRecordAudioResultEvent(status)" type="text/javascript">
+        //alert("开始录音事件"); 					开始录音事件      no
+		_appLog("StartRecordAudioResultEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="StopRecordAudioResultEvent(status)" type="text/javascript">
+        //alert("停止录音事件"); 					停止录音事件      no
+		_appLog("StopRecordAudioResultEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerSuperviseSuccessEvent (status)" type="text/javascript">
+        //alert("监听操作成功事件"); 					监听操作成功事件      未知
+		_appLog("TellerSuperviseSuccessEvent :");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerSuperviseFailEvent (status)" type="text/javascript">
+        //alert("监听操作失败事件"); 					监听操作失败事件      未知
+		_appLog("TellerSuperviseFailEvent :");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerInsertSuccessEvent (status)" type="text/javascript">
+        //alert("插入操作成功事件"); 					插入操作成功事件      未知
+		_appLog("TellerInsertSuccessEvent :");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="TellerInsertFailEvent (status)" type="text/javascript">
+        //alert("插入操作失败事件"); 					插入操作失败事件      未知
+		_appLog("TellerInsertFailEvent :");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="InsertedBeginEvent (status)" type="text/javascript">
+        //alert("当前通话被插入通知事件"); 					当前通话被插入通知事件      未知
+		_appLog("InsertedBeginEvent :");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="InsertedEndEvent()" type="text/javascript">
+        //alert("当前通话结束被插入通知事件"); 					当前通话结束被插入通知事件      未知
+		_appLog("InsertedEndEvent :");
+		_appLog(status);
+</script>
+
+
+
+   <!--远程协作事件-->
+<script language="javascript" for="ocx1" event="StopShareDesktopEvent(status)" type="text/javascript">
+        //alert("桌面共享停止事件"); 					桌面共享停止事件      no
+		_appLog("StopShareDesktopEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="RequestShareDesktopResultEvent(status)" type="text/javascript">
+        //alert("桌面共享结果事件"); 					桌面共享结果事件      no
+		_appLog("RequestShareDesktopResultEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="RequestRemoteControlResultEvent(status)" type="text/javascript">
+        //alert("远程控制结果"); 					远程控制结果      no
+		_appLog("RequestRemoteControlResultEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="StopRemoteControlEvent(status)" type="text/javascript">
+        //alert("结束远程控制"); 					结束远程控制      no
+		_appLog("StopRemoteControlEvent:");
+		_appLog(status);
+</script>
+
+
+
+
+
+
+   <!--I/O控制事件-->
+<script language="javascript" for="ocx1" event="FileTranInfoEvent(status)" type="text/javascript">
+        alert("文件传输进度"); 				//	文件传输进度      no
+		_appLog("FileTranInfoEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="FileTranOverEvent(status)" type="text/javascript">
+        alert("文件传输结束"); 				//	文件传输结束      ok
+		_appLog("FileTranOverEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="FileArrivedEvent(status)" type="text/javascript">
+        alert("文件到达事件"); 				//	文件到达事件      ok
+		_appLog("FileArrivedEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="FileTranCancelEvent(status)" type="text/javascript">
+        alert("文件传输取消事件"); 	     	//	文件传输取消事件      ok
+		_appLog("FileTranCancelEvent:");
+		_appLog(status);
+</script>
+<script language="javascript" for="ocx1" event="MsgArrivedEvent(status)" type="text/javascript">
+        alert("数据到达事件"); 				//	数据到达事件      ok
+		_appLog("MsgArrivedEvent:");
+		_appLog(status);
+</script>
+
+<script language="javascript" for="ocx1" event="NetWorkErrorEvent(status)" type="text/javascript">
+        //alert("数据到达事件"); 				//	数据到达事件      ok
+		_appLog("NetWorkErrorEvent:");
+		_appLog(status);
+</script>
+
+
+<style type="text/css">
+		@charset "utf-8";
+		/* CSS Document */
+
+		/*========COMMON STYLE========*/
+		html{overflow:auto;}
+		body { margin: 0px; padding: 0px; font-size: 12px; font-family: "宋体","微软雅黑","Arial","Tahoma"; color: #333333;min-width:1250px; overflow:auto;}
+		td, th, p, div, a, form, pre ,h1 ,h2 ,h3, h4{ margin: 0px; padding: 0px; font-size: 12px; font-weight:normal;  color: #333333; }
+		ul, li { margin: 0px; padding: 0px; list-style: none; font-size: 12px; color: #333333; }
+		input,select,textarea { margin: 0px; padding: 0px; outline:none; font-size: 12px;color: #333333; }
+		a img { border: 0px; }
+		a:link { color: #006699; text-decoration: none; }
+		a:visited { color: #006699; text-decoration: none; }
+		a:active { color: #006699; text-decoration: none; }
+		a:hover { color: #006699; text-decoration: underline; }
+		a:focus {outline: none;}
+		a.underline:link { color: #006699; text-decoration: underline; }
+		a.underline:visited { color: #006699; text-decoration: underline; }
+		a.underline:active { color: #006699; text-decoration: underline; }
+		a.underline:hover { color: #006699; text-decoration: underline; }
+		iframe {outline: none;}
+		input {font-family: 宋体;vertical-align: middle;}
+		img {border: none;}
+		.left{float:left; display:inline;}
+		.right{float:right; display:inline;}
+		.clear{clear:both;}
+		table {border-collapse: collapse; table-layout:fixed;}
+		.hidden{display:none;}
+		input[type='button']{ cursor:pointer;}
+
+		.main_content{padding:0 15px 15px;}
+		.container h2{ float:left; height:50px; line-height:50px; font-size:20px; font-weight:bold; }
+		/*=======container_left STYLE========*/
+		.container_left{border-top:1px solid #555555; vertical-align: top;}
+		/*-------main_box----------*/
+		.main_box{ border-bottom:1px solid #555;border-left:1px solid #555; padding:0 10px; overflow:hidden;background:#fff;}
+		.main_box_tilte{ height:30px; line-height:25px; color:#000; font-size:15px; font-weight:bold; }
+		.main_box table{ margin-bottom:10px; table-layout:fixed;}
+		.tab_wrap .main_box table{margin:0px;}
+		.main_box table td{vertical-align: middle;}
+		.login_items_name{width:60px; height:30px; line-height:30px; text-align:right;}
+		.login_items_input{ width:120px;vertical-align:middle; overflow:hidden; }
+		.login_items_input input{ width:110px; height:24px; line-height:24px; border:1px solid #555; }
+		.login_opr{ height:40px; line-height:40px;}
+		.login_btn_wrap{height:34px; border:1px solid #555; overflow:hidden; background:#f3f5f8;}
+		.login_btn_wrap input{ float:left; height:24px; margin-top:5px; margin-left:10px;}
+		.err_code_wrap{height:34px; line-height:34px; border:1px solid #555; background:#f3f5f8; overflow:hidden; border-left:0px none;}
+		.err_code_wrap span{padding-left:10px;}
+		.err_code_wrap input[type='text']{ height:20px;  line-height:20px;border:1px solid #555; width:120px;}
+		.err_code_wrap input[type='button']{ height:24px; width:160px;}
+		/*-------control_center----------*/
+		.partition{float:left; height:34px; width:1px; background:#999; display:inline; margin-left:10px; overflow:hidden;}
+		.top{padding:5px 0 0px 15px; overflow:hidden ;height:50px;}
+		.container h2.logo{background:url(scripts/huawei_logo.png) no-repeat; padding-left:55px;}
+		.container h2.department{background:url(../images/compartLine.png) 5px 15px no-repeat; color:#aaa; padding-left:16px;}
+		.container h2.product{ padding-left:80px; font-size:17px;}
+		.control_center{ border-top:0px none;}
+		.tab_wrap{padding-top:5px;overflow:hidden;}
+		.tab_title{border-left:1px solid #555; overflow:hidden;}
+		.tab_title ul li{ float:left; padding:8px 20px; border-top:1px solid #555; border-right:1px solid #555; cursor:pointer; min-width:60px; text-align:center;  background:#bbe0e3;}
+		.tab_title ul li.selected{background:#fff;}
+
+		.tab_con{border-top:1px solid #555;overflow:hidden; background:#fff;}
+		.tab_con_items{overflow:hidden;}
+		.tab_opr_td{overflow:hidden;}
+		.tab_opr_btn_wrap{ border:1px solid #555; overflow:hidden; background:#f3f5f8; overflow:hidden; margin-bottom:8px;}
+		.tab_opr_btn_wrap input[type='button']{  height:24px; margin:5px 0; margin-left:10px; display:inline; overflow:hidden;}
+		.tab_import_wrap span{height:24px; line-height:24px; margin: 5px 0 5px 10px; width:16px; text-align:center;}
+		.tab_import_wrap  input[type='text']{height:20px; *height:20px; line-height:20px; margin: 5px 0 5px 5px;  border:1px solid #555; width:120px;}
+		.tab_btn_sl{ border-left:1px solid #aaa; margin-left:20px; padding-left:5px; overflow:hidden;}
+		.label_name{ width:70px; text-align:right; height:34px; line-height:34px;}
+		.select_wrap,.input_text_wrap{ height:34px; line-height:34px; vertical-align:middle; overflow:hidden; width:202px;}
+		.select_wrap select{height:20px; margin:5px 0px; width:200px;}
+		.input_text_wrap input{ height:20px;  line-height:20px;margin:5px 0px;  border:1px solid #555; width:200px;  }
+		.input_text_wrap70{ height:34px; line-height:34px; vertical-align:middle; overflow:hidden; width:72px;}
+		.input_text_wrap70 input{ height:20px;  line-height:20px;margin:5px 0px;  border:1px solid #555; width:70px;  }
+		.document_share_import{ height:34px; line-height:34px;}
+		.document_share_import span{line-height:34px;margin:0px; padding:0px; width:20px; text-align:right; padding-right:5px;}
+		.document_share_import  input[type='text']{height:20px; *height:20px; line-height:20px; border:1px solid #555; margin:5px 0; width:86px;}
+		.scratcher_coordinate{ width:25px; text-align:right;}
+		.scratcher_coordinate_input{ height:34px; line-height:34px; vertical-align:middle; overflow:hidden; width:102px;}
+		.scratcher_coordinate_input input[type='text']{height:20px; *height:20px; line-height:20px; border:1px solid #555; overflow:hidden; width:100px;}
+		.brush_pencil{ width:352px;}
+		.brush_pencil input{ width:350px;}
+		.marker_input{width:62px;}
+		.marker_input input{width:60px;}
+		.marker_input select{border: 1px solid #555555;height: 20px;line-height: 20px;width: 60px;}
+		.marker_coordinate_input{width:52px;}
+		.marker_coordinate_input input{width:50px;}
+		.marker_scratcher_coordinate{width:25px;}
+		.screen_share_lable{width:25px; text-align:right; padding-right:5px;}
+		.screen_share_input{height:34px; line-height:34px; vertical-align:middle; overflow:hidden; width:122px;}
+		.screen_share_input input[type="text"]{height:20px; *height:20px; line-height:20px; border:1px solid #555; overflow:hidden; width:120px;}
+		.last_input{padding-right:10px;}
+
+		.call_center{ border:1px solid #555;}
+		.call_center table{margin:0px;}
+		.call_center table td{padding:0px 0px;}
+		.btHasSepLine,.call_center table td.btHasSepLine{border-left:1px solid #ddd; padding-left:10px;width:90px}
+		.btHasSepLine2,.call_center table td.btHasSepLine2{border-left:1px solid #ddd; padding-left:10px;width:120px}
+		.hasSepLine,.call_center table td.hasSepLine{border-left:1px solid #ddd; padding-left:10px; }
+		.SepLine,.call_center table td.SepLine{border-left:1px solid #555;width:1px;}
+		.hasRigSpacing,.call_center table td.hasRigSpacing{padding-right:10px;}
+		.call_center img{ cursor:pointer; }
+		.nomargin  input[type="button"]{margin-top:0px; margin-bottom:0px;}
+		.tab_opr_btn_wrap input[type="button"].marker_btn{float:left; margin-left:10px;}
+
+		.setWordMarker,.protractMarker,.updateMarker,.editMarker,.cancelMarker,.deleteMarker,.overEditMarker,.overProtractMarker,.refurbishType{ width:130px;}
+		.showType{width:140px;padding:5px 0;}
+		.createBtnWrap,.saveBtnWrap,.deleteBtnWrap,.startBtnWrap,.closeBtnWrap,.holdBtnWrap,.noSoundBtnWrap{width:80px;}
+		.forceReleaseBtnWarp,.cancelHoldBtnWrap,.diversionCall,.startMarkBtnWrap{width:100px;}
+		.callBtnWrap,.releaseBtnWarp{width:80px;}
+		.startBtnWrap,.closeBtnWrap{padding:5px 0;}
+		.createPage,.prevPage,.nextPage{width:90px; padding:5px 0;}
+		.selectMarker{ width:100px;padding:5px 0;}
+		.pageIcon,.set_show_area_icon{width:35px;}
+		.percent_icon{width:65px;}
+		.set_show_area_input{width:86px;}
+		.set_show_area_input input{width:84px;}
+		.switchFile{width:100px;}
+		.percent_input{width:177px;}
+		.percent_input input{width:175px;}
+		.w10{width:10px;}
+		.w45{width:45px;}
+		.w47{width:47px;}
+		.w50{width:50px;}
+		.w52{width:52px;}
+		.w60{width:60px;}
+		.w70{width:70px;}
+		.w80{width:80px;}
+		.w90{width:90px;}
+		.w100{width:100px;}
+		.w110{width:110px;}
+		.w120{width:120px;}
+		.w130{width:130px;}
+		.w140{width:140px;}
+		.w150{width:150px;}
+		.w160{width:160px;}
+		.w170{width:170px;}
+		.w180{width:180px;}
+		.w190{width:190px;}
+		.w200{width:200px;}
+		.w210{width:210px;}
+		.w220{width:220px;}
+		.w230{width:230px;}
+		.w240{width:240px;}
+		.w250{width:250px;}
+		.w280{width:280px;}
+		.w290{width:290px;}
+		.w300{width:300px;}
+		.w350{width:350px;}
+		.w352{width:352px;}
+		.bt_padding{padding:5px 0;}
+		.label_css{ text-align:right; height:34px; line-height:34px;}
+		.input_text_wrap_css{ height:34px; line-height:34px; vertical-align:middle; overflow:hidden;}
+		.input_text_wrap_css input{ height:20px;  line-height:20px;margin:5px 0px;  border:1px solid #555; }
+
+		.login_btn_wrap a{ float:left; height:24px; margin-top:0px; margin-left:0px;}
+		.select_css{border: 1px solid #555555;height: 20px;line-height: 20px;}
+		/*=======container_right STYLE========*/
+		.container_right{ width:34%; border:1px solid #555; padding:0 10px;vertical-align: top; background:#fff;}
+		.tm_container_right{ width:40%; border:1px solid #555; padding:0 10px;vertical-align: top; background:#fff;}
+		.log_top{ border-bottom:2px solid #a00; height:40px; line-height:40px; overflow:hidden;}
+		.log_titil{ float:left; display:inline; font-size:16px; font-weight:bold; }
+		.log_clear { float:left; display:inline; }
+		.log_clear input{ height:24px; margin:8px; width:70px; cursor:pointer;}
+		.log_mian{ padding:15px 0; overflow:hidden;}
+		.log_mian1{ padding:15px 0; overflow:hidden;}
+		.log_mian p{line-height:20px; height:20px; color:#555;  padding-left:20px;}
+		.line td{ border-bottom:1px solid #555;}
+		textarea
+		{
+		width:100%;
+		height:100%;
+		overflow-y:auto;
+		}
+
+	</style>
+</head>
+<body>
+	<OBJECT ID="EspaceMediaOCX" CLASSID="CLSID:8DE98088-1FA8-4182-85FE-8630F253C347" VIEWASTEXT width=0 height=0></OBJECT>
+	<OBJECT ID="EMediaUIOCX" CLASSID="CLSID:13FF5705-5F43-44DE-855F-81CE879771DD" VIEWASTEXT width=0 height=0></OBJECT>
+<div id="divOcxContainer">
+</div>
+    <div style="position: fixed; right: 25px;">
+        <a href="./MediaCtl-VTM.html" style="font-size: 1.8em !important; color: black !important"><b>VTM</b></a>
+    </div>
+	<div class="container">
+    	<div class="top">
+            <h2 class="left logo">VTA功能测试DEMO</h2>
+            <h2 class="left department"><a>码全</a></h2>
+            <h2 class="left product">VTM eMedia Vtmctl Interface Demo v1.0</h2>
+            <p class="clear"></p>
+        </div>
+        <div class="main_content">
+        	 <form action="" method="get">
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td class="container_left">
+                            <div class="main_box">
+                                <h3 class="main_box_tilte">配置</h3>
+								<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin:0px;">
+									  <tr>
+                                           <td class="tab_opr_td">
+                                               <div class="tab_opr_btn_wrap call_center">
+
+
+													<table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr class="line">
+															<td class="label_name w120">获取屏幕分辨率大小:</td>
+															<td class="input_text_wrap_css  w140">
+                                                                <select class="w140 select_css" onkeydown="Select.del(this,event)" onkeypress="Select.write(this,event)" ID="selectgetscreensize">
+
+                                                                      <option value="0">0-一号屏</option>
+                                                                      <option value="1">1-二号屏</option>
+                                                                </select>
+                                                            </td>
+															<td class="w130">
+																<input class="w100" type="button" id="Button3" name="btn3" value="确定"  title="确定" onclick="Onk1(vtmValueOf('selectgetscreensize'))"></input>
+																<a> > </a>
+															</td>
+															<td>&nbsp;</td>
+                                                        </tr>
+                                                    </table>
+													<table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr class="line">
+															<td class="label_name w120">窗口id:</td>
+															<td class="input_text_wrap_css  w140">
+                                                                <select class="w140 select_css" onkeydown="Select.del(this,event)" onkeypress="Select.write(this,event)" ID="window">
+
+                                                                      <option value="0">0-本端</option>
+                                                                      <option value="1">1-远端</option>
+                                                                </select>
+                                                            </td>
+															<td>&nbsp;</td>
+															<td class="label_name w120">分辩率大小:</td>
+                                                            <td class="input_text_wrap_css  w140">
+                                                                <select class="w140 select_css" onkeydown="Select.del(this,event)" onkeypress="Select.write(this,event)" ID="windowsize">
+
+                                                                      <option value="0">0-1080P</option>
+                                                                      <option value="1">1-720P</option>
+																	  <option value="2">2-704x576</option>
+																	  <option value="3">3-640x480</option>
+																	  <option value="4">4-352x288</option>
+                                                                </select>
+                                                            </td>
+															<td class="w130">
+																<input class="w100" type="button" id="Button4" name="btn4" value="确定"  title="确定" onclick="OnWindow(vtmValueOf('window'),vtmValueOf('windowsize'))"></input>
+																<a> > </a>
+															</td>
+															<td>&nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                               </div>
+                                           </td>
+                                      </tr>
+
+                                </table>
+                        	</div>
+                            <div class="main_box control_center">
+                                <h3 class="main_box_tilte">登录与登出</h3>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                            <td class="login_items_name">帐号:</td>
+                                            <td class="login_items_input"><input type="text" value="teller01" ID="VT_id"/></td>
+											<td class="login_items_name">密码:</td>
+                                            <td class="login_items_input"><input type="text" value="12345678" ID="VT_password" /></td>
+
+
+                                            <td rowspan="2"></td>
+
+                                      </tr>
+
+                                  </table>
+
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin:0px;">
+
+                                      <tr>
+                                           <td class="tab_opr_td">
+                                               <div class="tab_opr_btn_wrap call_center">
+                                                   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+
+                                                            <td class="w160">
+																<input class="w130" type="button" id="Button3" name="btn3" value="登陆"  title="登陆" onclick="Onlogin(vtmValueOf('VT_id'), vtmValueOf('VT_password'))"></input>
+																<a> > </a>
+															</td>
+															<td class="w160">
+																<input class="w130" type="button" id="Button4" name="btn4" value="强制登陆"  title="强制登陆" onclick="Onforcelogin(vtmValueOf('VT_id'), vtmValueOf('VT_password'))"></input>
+																<a> > </a>
+															</td>
+                                                        </tr>
+                                                    </table>
+                                               </div>
+                                           </td>
+                                      </tr>
+
+                                      <tr>
+                                           <td class="tab_opr_td">
+                                               <div class="tab_opr_btn_wrap call_center">
+
+                                                   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+															<td class="w160">
+																<input class="w130" type="button" id="Button4" name="btn4" value="登出"  title="登出" onclick="Onlogout()"></input>
+																<a> > </a>
+															</td>
+															<td>&nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                               </div>
+                                           </td>
+                                      </tr>
+                                </table>
+                            </div>
+							<div class="main_box control_center">
+                                <h3 class="main_box_tilte">VTA 呼叫控制接口</h3>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin:0px;">
+
+                                                                           <tr>
+                                           <td class="tab_opr_td">
+                                               <div class="tab_opr_btn_wrap call_center">
+                                                   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td class="w160">
+																<input class="w130" type="button" id="Button6" name="btn6" value="接听"  title="接听" onclick="OnAnswer()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td class="w160">
+																<input class="w130" type="button" id="Button8" name="btn8" value="挂断"  title="挂断" onclick="OnHangup()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td class="w160">
+																<input class="w130" type="button" id="Button9" name="btn9" value="转移"  title="转移" onclick="OnTransfer()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td>
+																<input class="w130" type="button" id="Button9" name="btn9" value="强制登出"  title="强制登出" onclick="OnForceLogout()"></input>
+																<a> > </a>
+															</td>
+
+
+
+
+                                                        </tr>
+                                                    </table>
+                                               </div>
+                                           </td>
+                                      </tr>
+
+                                      <tr>
+                                           <td class="tab_opr_td">
+                                               <div class="tab_opr_btn_wrap call_center">
+
+                                                   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td class="w160">
+																<input class="w130" type="button" id="Button13" name="btn13" value="保持"  title="保持" onclick="OnHold()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td class="w160">
+																<input class="w130" type="button"  id="Button14" name="btn14" value="取消保持"  title="取消保持" onclick="OnRecover()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td class="w160">
+																<input class="w130" type="button" id="Button11" name="btn11" value="静音"  title="静音" onclick="OnVoice()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td>
+																<input class="w130" type="button" id="Button12" name="btn12" value="取消静音"  title="取消静音" onclick="OnUnVoice()"></input>
+																<a> > </a>
+															</td>
+                                                        </tr>
+                                                    </table>
+
+                                               </div>
+                                           </td>
+                                      </tr>
+									  <tr>
+                                           <td class="tab_opr_td">
+                                               <div class="tab_opr_btn_wrap call_center">
+
+								                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+															<td class="label_name w45">工号：</td>
+                                                            <td class="input_text_wrap  marker_input">
+																<input type="text" value="teller01" ID="TellerPage.TellerCallInnerID"/>
+                                                            </td>
+                                                            <td class="label_name w70">通话模式：</td>
+                                                            <td class="input_text_wrap_css  w140">
+                                                                <select class="w140 select_css" onkeydown="Select.del(this,event)" onkeypress="Select.write(this,event)" ID="TellerPage.TellerCallInnerMode">
+
+                                                                      <option value="0">0-音视频</option>
+                                                                      <option value="1">1-音频</option>
+																	  <option value="audio">audio-音频</option>
+																	  <option value="audioAndVideo">audioAndVideo-音视频</option>
+                                                                </select>
+                                                            </td>
+                                                            <td class="w110">
+																<input class="w80" type="button" value="内部呼叫"
+																	onClick="TellerCallInner(vtmValueOf('TellerPage.TellerCallInnerID'), vtmValueOf('TellerPage.TellerCallInnerMode'));" ID="TellerPage.TellerCallInner"/>
+																<a> > </a>
+															</td>
+                                                            <td class="w110">
+																<input class="w80" type="button" value="普通外呼"
+																	onClick="TellerCallOut(vtmValueOf('TellerPage.TellerCallInnerID'), vtmValueOf('TellerPage.TellerCallInnerMode'));" ID="TellerPage.TellerCallOut"/>
+																<a> > </a>
+															</td>
+
+                                                        </tr>
+                                                    </table>
+
+                                               </div>
+                                           </td>
+                                      </tr>
+									  <tr>
+                                           <td class="tab_opr_td">
+                                               <div class="tab_opr_btn_wrap call_center">
+
+								                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+															<td class="label_name w70">通话模式：</td>
+															<td class="input_text_wrap_css marker_input_css w150">
+                                                                <select class="w150" onkeydown="Select.del(this,event)" onkeypress="Select.write(this,event)" ID="TellerPage.TellerTripartiteCallMode">
+                                                                      <option value="1">1-音视频</option>
+																	  <option value="0">0-音频</option>
+                                                                      <option value="1">1-音视频</option>
+																	  <option value="3">3-纯语音</option>
+																	  <option value="8">8-非审核</option>
+																	  <option value="audio">audio-音频</option>
+																	  <option value="audioAndVideo">audioAndVideo-音视频</option>
+																	  <option value="audioonly">audioonly-纯语音</option>
+                                                                </select>
+                                                            </td>
+
+															<td>
+																<input class="w80" type="button" value="三方通话"
+																onClick="TellerTripartiteCall(vtmValueOf('TellerPage.TellerTripartiteCallMode'));" ID="TellerPage.TellerTripartiteCall"/>
+																<a> > </a>
+															</td>
+                                                        </tr>
+                                                    </table>
+
+                                               </div>
+                                           </td>
+                                      </tr>
+
+                                </table>
+
+                            </div>
+
+                            <div class="tab_wrap">
+                            	<div class="tab_title">
+                                	<ul>
+                                        <li id="TellerPage.SC_LiId" class="tab_title_items selected" onclick="showDiv('SC_DivId');this.className='tab_title_items selected';">状态控制接口</li>
+
+                                        <li id="TellerPage.IO_LiId" class="tab_title_items" onclick="showDiv('IO_DivId');this.className='tab_title_items selected';">I/O控制接口</li>
+
+                                        <li id="TellerPage.Cllb_LiId" class="tab_title_items" onclick="showDiv('Cllb_DivId');this.className='tab_title_items selected';">远程协作接口</li>
+										<li id="TellerPage.QC_LiId" class="tab_title_items" onclick="showDiv('QC_DivId');this.className='tab_title_items selected';">质检接口</li>
+                                        <li id="TellerPage.IS_LiId" class="tab_title_items" onclick="showDiv('IS_DivId');this.className='tab_title_items selected';">信息查询接口</li>
+
+                                    </ul>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="tab_con">
+                                	<!---------- 状态控制接口 ------------>
+
+                                	<div class="tab_con_items" id="SC_DivId">
+                                    	<div class="main_box">
+											<h3 class="main_box_tilte">状态控制</h3>
+											<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin:0px;">
+												  <tr>
+													   <td class="tab_opr_td">
+														   <div class="tab_opr_btn_wrap call_center">
+															   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+																	<tr>
+																		<td class="w160">
+																			<input class="w130" type="button" id="Button7" name="btn7" value="示忙"  title="示忙" onclick="OnStatus()"></input>
+																			<a> > </a>
+																		</td>
+																		<td class="SepLine">&nbsp;</td>
+																		<td class="w160">
+																			<input class="w130" type="button" id="Button10" name="btn10" value="示闲"  title="示闲" onclick="OnStatus1()"></input>
+																			<a> > </a>
+																		</td>
+																		<td class="SepLine">&nbsp;</td>
+																		<td class="w160">
+																			<input class="w130" type="button" value="进入工作态" onClick="TellerEnterWork();" ID="TellerPage.TellerEnterWork"/>
+																			<a> > </a>
+																		</td>
+																		<td class="SepLine"></td>
+																		<td class="w160">
+																			<input class="w130" type="button" value="退出工作态" onClick="TellerCancelWork();" ID="TellerPage.TellerCancelWork"/>
+																			<a> > </a>
+																		</td>
+																		<td>&nbsp;</td>
+																	</tr>
+																</table>
+														   </div>
+													   </td>
+												  </tr>
+												  <tr>
+													   <td class="tab_opr_td">
+														   <div class="tab_opr_btn_wrap call_center">
+															   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+																	<tr>
+																		<td style="width:70px; text-align:right;">休息时长：</td>
+																		<td class="input_text_wrap  marker_input">
+																			<input type="text" value="1800" ID="TellerPage.TellerRestDuration"/>
+																		</td>
+																		<td style="width:80px; text-align:right;">休息原因码：</td>
+																		<td class="input_text_wrap  marker_input">
+																			<input type="text" value="0" ID="TellerPage.TellerRestReason"/>
+																		</td>
+
+																		<td class="w160">
+																			<input class="w130" type="button" name="btn15" value="休息"  title="休息"
+																					onClick="TellerSayRest(vtmValueOf('TellerPage.TellerRestDuration'), vtmValueOf('TellerPage.TellerRestReason'));" ID="TellerPage.TellerSayRest"/></input>
+																			<a> > </a>
+																		</td>
+
+																		<td class="SepLine"></td>
+																		<td class="w160">
+																			<input class="w130" type="button" type="button" id="Button16" name="btn16" value="取消休息"  title="取消休息" onclick="Onkk()"></input>
+																			<a> > </a>
+																		</td>
+																		<td>&nbsp;</td>
+																	</tr>
+																</table>
+														   </div>
+													   </td>
+												  </tr>
+
+											</table>
+										</div>
+                                    </div>
+                                    <!---------- I/O控制接口 ------------>
+                                    <div class="tab_con_items hidden" id="IO_DivId">
+                                    	<div class="main_box">
+											 <h3 class="main_box_tilte">I/O控制</h3>
+                                             <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin:0px;">
+												  <tr>
+                                                       <td class="tab_opr_td">
+                                                           <div class="tab_opr_btn_wrap nomargin">
+                                                               <table width="100%" border="0" cellpadding="0" cellspacing="0">
+																	<tr>
+																	   <td class="label_name">消息内容:</td>
+																	   <td class="input_text_wrap"><input type="text"  value="HelloWorld" ID="TellerPage.tellersendmsg"/></td>
+																	   <td class="w140 bt_padding">
+																			<input class="w110" type="button"  value="发送消息给客户"
+																				onClick="TellerSendMsg(vtmValueOf('TellerPage.tellersendmsg'));" ID="TellerPage.TellerSendMsgToTellerFunc"/>
+																			<a> > </a>
+																	   </td>
+																	   <td class="w140 bt_padding">
+																			<input class="w110" type="button"  value="发送消息给柜员"
+																				onClick="TellerSendMsgToTeller(vtmValueOf('TellerPage.tellersendmsg'));" ID="TellerPage.TellerSendMsgToTellerFunc"/>
+																			<a> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+																	</tr>
+                                                               </table>
+                                                           </div>
+                                                       </td>
+                                                  </tr>
+
+                                            	  <tr>
+                                                       <td >
+                                                           <div class="tab_opr_btn_wrap nomargin">
+                                                               <table width="100%" border="0" cellpadding="0" cellspacing="0">
+																	<tr>
+																	   <td class="label_name">文件路径:</td>
+																	   <td class="input_text_wrap"><input type="text"  value="C:\Users\user\Desktop\1.txt" ID="TellerPage.TellerPathIn"/></td>
+																	   <td class="w140 bt_padding">
+																			<input class="w110" type="button"  value="发送文件给客户"
+																				onClick="TellerSendFileToTerminal(vtmValueOf('TellerPage.TellerPathIn'));" ID="TellerPage.TellerSendFileToTerminal"/>
+																			<a> > </a>
+																	   </td>
+																	   <td class="w140 bt_padding">
+																			<input class="w110" type="button"  value="发送文件给柜员"
+																				onClick="TellerSendFileToTeller(vtmValueOf('TellerPage.TellerPathIn'));" ID="TellerPage.TellerSendFileToTeller" />
+																			<a href="javascript:findMethodScript('TellerSendFileToTeller')"> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+																	</tr>
+                                                               </table>
+
+                                                           </div>
+                                                       </td>
+                                                  </tr>
+												  <tr>
+                                                       <td class="tab_opr_td">
+                                                           <div class="tab_opr_btn_wrap nomargin">
+                                                               <table width="100%" border="0" cellpadding="0" cellspacing="0">
+																	<tr class="line">
+																	   <td class="label_name">文件句柄:</td>
+																	   <td class="input_text_wrap"><input type="text" value="0" ID="TellerPage.TellerFileHandle"/></td>
+																	   <td>&nbsp;</td>
+																	</tr>
+                                                               </table>
+                                                               <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                             		<tr>
+                                                                       <td class="label_name">文件路径:</td>
+                                                                       <td class="input_text_wrap"><input type="text" value="D:\1" ID="TellerPage.TellerPathOut"/></td>
+                                                                       <td class="w90">
+																			<input class="w60" type="button"  value="接收文件"
+																				onClick="TellerRecvFile(vtmValueOf('TellerPage.TellerFileHandle'),vtmValueOf('TellerPage.TellerPathOut'));" ID="TellerPage.TellerRecvFile"/>
+																			<a> > </a>
+																	   </td>
+																	   <td class="SepLine"></td>
+																	   <td class="w90">
+																			<input class="w60" type="button"  value="取消发送" onClick="TellerCancelSendFile(vtmValueOf('TellerPage.TellerFileHandle'));" ID="TellerPage.TellerCancelSendFile"/>
+																			<a> > </a>
+																	   </td>
+																	   <td class="SepLine"></td>
+																	   <td>
+																			<input type="button"  class="w60" value="取消接收" onClick="TellerCancelRecvFile(vtmValueOf('TellerPage.TellerFileHandle'));" ID="TellerPage.TellerCancelRecvFile" />
+																			<a> > </a>
+																	   </td>
+                                                                    </tr>
+                                                               </table>
+                                                           </div>
+                                                       </td>
+                                                  </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!---------- 远程协作接口 ------------>
+                                    <div class="tab_con_items hidden" id="Cllb_DivId">
+                                    	 <div class="main_box">
+                                            <h3 class="main_box_tilte">屏幕共享</h3>
+                                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                  <tr>
+                                                       <td class="tab_opr_td">
+                                                           <div class="tab_opr_btn_wrap">
+                                                               <input class="w60" type="button" value="请求" onClick="TellerRequestShare();" ID="TellerPage.TellerRequestShare"/>
+															   <a> > </a>
+
+                                                               <input class="w60" type="button" value="关闭" onClick="TellerStopDeskShare();" ID="TellerPage.TellerStopDeskShare"/>
+															   <a> > </a>
+
+                                                               <!--<input class="w60" type="button" value="刷新" onClick="TellerRefreshDesktopWnd();" ID="TellerPage.TellerRefreshDesktopWnd"/>
+															   <a> > </a>
+                                                               <div class="clear"></div>-->
+                                                           </div>
+                                                       </td>
+                                                  </tr>
+                                                  <!--<tr>
+                                                       <td class="tab_opr_td">
+                                                           <div class="tab_opr_btn_wrap nomargin">
+                                                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                                    <tr class="line">
+                                                                        <td class="screen_share_lable w60">横坐标X:</td>
+                                                                        <td class="screen_share_input"><input class="left" type="text"  value="0" ID="TellerPage.freshXID"/></td>
+                                                                        <td class="screen_share_lable w60">纵坐标Y:</td>
+                                                                        <td class="screen_share_input"><input class="left" type="text"  value="0" ID="TellerPage.freshYID"/></td>
+                                                                        <td class="refurbishType">
+																			<input class="w100" type="button" value="按偏移量刷新"
+																				onClick="TellerRefreshDesktopWndByCoordinate(vtmValueOf('TellerPage.freshXID'), vtmValueOf('TellerPage.freshYID'));" ID="TellerPage.TellerRefreshDesktopWndByCoordinate" />
+																			<a"> > </a>
+																		</td>
+																		<td>&nbsp;</td>
+                                                                     </tr>
+																	  <tr>
+																		<td class="screen_share_lable">宽:</td>
+                                                                        <td class="screen_share_input"><input class="left" type="text"  value="800" ID="TellerPage.desktopShareWidth"/></td>
+                                                                        <td class="screen_share_lable">高:</td>
+                                                                        <td class="screen_share_input"><input class="left" type="text"  value="800" ID="TellerPage.desktopShareHeight"/></td>
+                                                                        <td>
+																			<input type="button" class="w90" value="设置显示区"
+																				onClick="TellerSetDisplaySize(vtmValueOf('TellerPage.desktopShareWidth'), vtmValueOf('TellerPage.desktopShareHeight'));" ID="TellerPage.TellerSetDisplaySize"/>
+																			<a> > </a>
+																		</td>
+																		<td>&nbsp;</td>
+                                                                     </tr>
+                                                                 </table>
+                                                           </div>
+                                                       </td>
+                                                  </tr>-->
+                                            </table>
+                                        </div>
+                                        <div class="main_box">
+                                            <h3 class="main_box_tilte">远程控制</h3>
+                                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                  <tr>
+                                                       <td class="tab_opr_td">
+                                                           <div class="tab_opr_btn_wrap">
+                                                               <input class="w60" type="button" value="请求" onClick="TellerRequestRemoteControl();" ID="TellerPage.TellerRequestRemoteControl"/>
+															   <a> > </a>
+
+                                                               <input class="w60" type="button" value="关闭" onClick="TellerStopRemoteControl();" ID="TellerPage.TellerStopRemoteControl"/>
+															   <a> </a>
+                                                               <div class="clear"></div>
+                                                           </div>
+                                                       </td>
+                                                  </tr>
+                                            </table>
+                                        </div>
+										<div class="main_box">
+                                            <h3 class="main_box_tilte">程序共享(暂无)</h3>
+
+                                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                  <tr>
+                                                       <td class="tab_opr_td">
+                                                           <div class="tab_opr_btn_wrap">
+															  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+																	<tr class="line">
+																	   <td class="label_name">窗口句柄:</td>
+																	   <td class="input_text_wrap"><input type="text"  value="123456" ID="TellerPage.appHwnd"/></td>
+																	   <td>&nbsp;</td>
+																	</tr>
+                                                               </table>
+                                                               <input class="w80" type="button" value="获取程序列表" onClick="TellerGetAppList();" ID="TellerPage.TellerGetAppList"/>
+															   <a"> > </a>
+
+                                                               <input class="w60" type="button" value="发起" onClick="TellerAppShareStart(vtmValueOf('TellerPage.appHwnd'));" ID="TellerPage.TellerAppShareStart"/>
+															   <a> > </a>
+
+															   <input class="w60" type="button" value="停止" onClick="TellerAppShareStop(vtmValueOf('TellerPage.appHwnd'));" ID="TellerPage.TellerAppShareStop"/>
+															   <a> > </a>
+                                                               <div class="clear"></div>
+                                                           </div>
+                                                       </td>
+                                                  </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!---------- 质检接口 ------------>
+                                    <div class="tab_con_items hidden" id="QC_DivId">
+                                    	 <div class="main_box">
+                                            <h3 class="main_box_tilte">VTA 质检接口</h3>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin:0px;">
+
+                                      <tr>
+                                           <td class="tab_opr_td">
+
+											   <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin:0px;">
+										<tr>
+											<td class="tab_opr_td">
+												<div class="tab_opr_btn_wrap call_center">
+
+													<table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td class="w130">
+																<input class="w100" type="button" id="Button17" name="btn17" value="录屏"  title="录屏" onclick="OnStartScreen()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td class="w130">
+																<input class="w100" type="button" id="Button18" name="btn18" value="停止录屏"  title="停止录屏" onclick="OnStopScreen()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td class="w130">
+																<input class="w100" type="button" id="Button19" name="btn19" value="录音"  title="录音" onclick="OnStartAudio()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td class="w130">
+																<input class="w100" type="button" id="Button20" name="btn20" value="停止录音"  title="停止录音" onclick="OnStopAudio()"></input>
+																<a> > </a>
+															</td>
+															<td class="SepLine">&nbsp;</td>
+															<td>
+																<input class="w100" type="button" id="Button21" name="btn21" value="拍照"  title="拍照" onclick="OnShot()"></input>
+																<a> > </a>
+															</td>
+                                                        </tr>
+													</table>
+                                               </div>
+                                           </td>
+										</tr>
+										<tr>
+                                                       <td class="tab_opr_td">
+                                                           <div class="tab_opr_btn_wrap nomargin">
+                                                               <table width="100%" border="0" cellpadding="0" cellspacing="0">
+																	<tr class="line">
+																	   <td class="label_css w70">柜员工号:</td>
+																	   <td class="input_text_wrap70"><input type="text" value="tell8115" ID="TellerPage.qc_staffId5"/></td>
+																	   <td class="label_css w70">媒体类型:</td>
+																	    <td class="input_text_wrap_css  w140">
+																			<select class="w140 select_css" onkeydown="Select.del(this,event)" onkeypress="Select.write(this,event)" ID="TellerPage.qc_mediaType1">
+																				  <option value="1">1-音视频</option>
+																				  <option value="0">0-音频</option>
+
+																				  <option value="audio">audio-音频</option>
+																				  <option value="audioAndVideo">audioAndVideo-音视频</option>
+																			</select>
+																	   </td>
+                                                                       <td class="w130 bt_padding">
+																			<input class="w80" type="button"  value="监听"
+																				onClick="TellerStartSupervise(vtmValueOf('TellerPage.qc_staffId5'), vtmValueOf('TellerPage.qc_mediaType1'));" ID="TellerPage.TellerStartSupervise"/>
+																			<a> > </a>
+																	   </td>
+																	   <td class="SepLine"></td>
+																	   <td class="label_css w70">柜员工号:</td>
+																	   <td class="input_text_wrap  marker_input"><input type="text" value="tell8115" ID="TellerPage.qc_staffId6"/></td>
+                                                                       <td class="w130 bt_padding">
+																			<input class="w100" type="button"  value="停止监听(插入)"
+																				onClick="TellerStopSuperviseOrInsert(vtmValueOf('TellerPage.qc_staffId6'));" ID="TellerPage.TellerStopSuperviseOrInsert"/>
+																			<a> > </a>
+																	   </td>
+
+																	   <td colspan="3">&nbsp;</td>
+																	</tr>
+																	<tr>
+																	   <td class="label_css w70">柜员工号:</td>
+																	   <td class="input_text_wrap70"><input type="text" value="tell8115" ID="TellerPage.qc_staffId7"/></td>
+																	   <td class="label_css w70">媒体类型:</td>
+																	   <td class="input_text_wrap_css  w140">
+																			<select class="w140 select_css" onkeydown="Select.del(this,event)" onkeypress="Select.write(this,event)" ID="TellerPage.qc_mediaType2">
+																				  <option value="1">1-音视频</option>
+																				  <option value="0">0-音频</option>
+
+																				  <option value="audio">audio-音频</option>
+																				  <option value="audioAndVideo">audioAndVideo-音视频</option>
+																			</select>
+																	   </td>
+                                                                       <td class="w130 bt_padding">
+																			<input class="w80" type="button"  value="插入"
+																				onClick="TellerInsertCall(vtmValueOf('TellerPage.qc_staffId7'), vtmValueOf('TellerPage.qc_mediaType2'));" ID="TellerPage.TellerInsertCall"/>
+																			<a> > </a>
+																	   </td>
+
+																	   <td class="SepLine"></td>
+
+																	   <td class="label_css w70"></td>
+																	   <td class="input_text_wrap  marker_input"></td>
+																	   <td class="w130 bt_padding">
+																			<input class="w100" type="button"  value="切换监听/插入"
+																				onClick="TellerSwitchSuperviseOrInsert();" ID="TellerPage.TellerSwitchSuperviseOrInsert"/>
+																			<a> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+																	</tr>
+                                                               </table>
+                                                           </div>
+                                                       </td>
+                                                  </tr>
+
+												</table>
+                                           </td>
+										</tr>
+                                </table>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <!---------- 信息查询接口 ------------>
+                                    <div class="tab_con_items hidden" id="IS_DivId">
+                                    	<div class="main_box">
+											 <h3 class="main_box_tilte">信息查询</h3>
+                                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
+												  <tr>
+                                                       <td class="tab_opr_td">
+                                                           <div class="tab_opr_btn_wrap nomargin">
+                                                               <table width="100%" border="0" cellpadding="0" cellspacing="0">
+																	<tr>
+																	   <td class="w230 bt_padding">
+																			<input class="w200" type="button" value="查询登录柜员签入的业务类型列表"
+																				onClick="queryLoginServices();" ID="TellerPage.queryLoginServices"/>
+																			<a href="javascript:findMethodScript('queryLoginServices')"> > </a>
+																	   </td>
+																	   <td class="SepLine"></td>
+																	   <td class="w250 bt_padding">
+																			<input class="w220" type="button" value="查询该次登录后的服务次数和服务时长"
+																				onClick="TellerQueryStatictics();" ID="TellerPage.TellerQueryStatictics"/>
+																			<a href="javascript:findMethodScript('TellerQueryStatictics')"> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+																	   <td class="SepLine"></td>
+																	   <td class="w250 bt_padding">
+																			<input class="w220" type="button" value="查询所有登录柜员的状态信息"
+																				onClick="MediaTellerGetDetailInfoOfAll();" ID="TellerPage.MediaTellerGetDetailInfoOfAll"/>
+																			<a href="javascript:findMethodScript('MediaTellerGetDetailInfoOfAll')"> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+																	</tr>
+                                                               </table>
+                                                           </div>
+                                                       </td>
+                                                  </tr>
+
+                                                  <tr>
+                                                       <td class="tab_opr_td">
+                                                           <div class="tab_opr_btn_wrap nomargin">
+                                                               <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                             		<tr class="line">
+                                                                       <td class="label_css w70">柜员工号:</td>
+                                                                       <td class="input_text_wrap"><input type="text" value="tell8115" ID="TellerPage.MediaQuyTellerId" /></td>
+                                                                       <td class="w210 bt_padding">
+																			<input class="w160" type="button"  value="查询指定柜员的状态信息"
+																				onClick="MediaTellerGetDetailInfo(vtmValueOf('TellerPage.MediaQuyTellerId'));"
+																				ID="TellerPage.MediaTellerGetDetailInfo" />
+																			<a href="javascript:findMethodScript('MediaTellerGetDetailInfo')"> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+                                                                    </tr>
+
+																	<tr class="line">
+                                                                       <td class="label_css w70">柜员工号:</td>
+                                                                       <td class="input_text_wrap"><input type="text" value="" ID="TellerPage.staffId2"/></td>
+                                                                       <td class="w210 bt_padding">
+																			<input class="w160" type="button"  value="查询业务类型列表"
+																				onClick="queryServicesByStaffId(vtmValueOf('TellerPage.staffId2'));" ID="TellerPage.queryServicesByStaffId"/>
+																			<a href="javascript:findMethodScript('queryServicesByStaffId')"> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+                                                                    </tr>
+																	<tr class="line">
+                                                                       <td class="label_css">业务编号:</td>
+                                                                       <td class="input_text_wrap"><input type="text" value="003016" ID="TellerPage.serviceId"/></td>
+                                                                       <td class="w210 bt_padding">
+																			<input class="w180" type="button"  value="查询指定业务类型的柜员列表"
+																				onClick="queryStaffsByServiceId(vtmValueOf('TellerPage.serviceId'));" ID="TellerPage.queryStaffsByServiceId"/>
+																			<a href="javascript:findMethodScript('queryStaffsByServiceId')"> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+                                                                    </tr>
+																	<tr  class="line">
+                                                                       <td class="label_css w70">业务编号:</td>
+                                                                       <td class="input_text_wrap"><input type="text" value="003016" ID="TellerPage.serviceId2"/></td>
+                                                                       <td class="w210 bt_padding">
+																			<input class="w180" type="button"  value="查询指定业务的当前排队人数"
+																				onClick="TellerQueryServiceWaitNum(vtmValueOf('TellerPage.serviceId2'));" ID="TellerPage.TellerQueryServiceWaitNum"/>
+																			<a href="javascript:findMethodScript('TellerQueryServiceWaitNum')"> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+                                                                    </tr>
+
+																	<tr  class="line">
+                                                                       <td class="label_css w70">业务等级:</td>
+                                                                       <td class="input_text_wrap"><input type="text" value="003016" ID="TellerPage.serviceLevel"/></td>
+                                                                       <td class="w210 bt_padding">
+																			<input class="w180" type="button"  value="查询指定业务等级的当前排队人数"
+																				onClick="TellerQueryServiceLevelWaitNum(vtmValueOf('TellerPage.serviceLevel'));" ID="TellerPage.TellerQueryServiceLevelWaitNum"/>
+																			<a href="javascript:findMethodScript('TellerQueryServiceLevelWaitNum')"> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+                                                                    </tr>
+
+																	<tr  class="line">
+                                                                       <td class="label_css w70">keyWord:</td>
+                                                                       <td class="input_text_wrap"><input type="text" value="teller" ID="TellerPage.keyWord"/></td>
+                                                                       <td class="w210 bt_padding">
+																			<input class="w180" type="button"  value="模糊查询指定keyWord的柜员列表"
+																				onClick="TellerFuzzyQueryStaffsByKey(vtmValueOf('TellerPage.keyWord'));" ID="TellerPage.TellerFuzzyQueryStaffsByKey"/>
+																			<a href="javascript:findMethodScript('TellerFuzzyQueryStaffsByKey')"> > </a>
+																	   </td>
+																	   <td>&nbsp;</td>
+                                                                    </tr>
+                                                               </table>
+                                                           </div>
+                                                       </td>
+                                                  </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+                        </td>
+
+				        <td class="SepLine">&nbsp;</td>
+
+
+
+                        <td class="tm_container_right">
+                            <div class="log_top">
+                                <p class="log_titil">LOG</p>
+                                <p class="btn log_clear">
+                                	<input type="button" value="清空" onclick="_clearLog();" ID="VTMCtlPage.ClearLoglist"/>
+                                </p>
+								<!--
+								<p>
+									<input type=checkbox ID="VTMCtlPage.showMsg" CHECKED onmousedown="Ext.setAutoShow(this.checked)">显示消息
+									<input type=checkbox ID="VTMCtlPage.autosend" onmousedown="Ext.setAutoSend(!this.checked)">自动发送
+									<input type=checkbox ID="VTMCtlPage.autoResp" onmousedown="Ext.setAutoResp(!this.checked)">自动响应
+                                </p>
+								-->
+                                <p class="clear"></p>
+                            </div>
+                            <div class="log_mian">
+								<textarea id="VTMCtlPage.LogInfo" rows="20"></textarea>
+                            </div>
+							<div class="log_mian">
+								<textarea id="VTMCtlPage.LogInfo2" rows="10"></textarea>
+                            </div>
+								<table width="100%" border="0" cellpadding="0" cellspacing="0">
+									  <tr>
+                                           <td class="tab_opr_td">
+                                               <div class="tab_opr_btn_wrap call_center">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0">
+														<tr>
+															<td class="label_name w60">发送信息:</td>
+															<td class="input_text_wrap_css w150">
+																<input class="w140" type="text" value="6666" ID="Teller.txt"/>
+															</td>
+
+															<td class="w150">
+																<input class="w90" type="button" value="确认"
+																	onClick="Ontest(vtmValueOf('Teller.txt'));"
+																	ID="TellerPage.TellerActive"/>
+																<a> > </a>
+															</td>
+															<td class="input_text_wrap_css w80">
+																<select class="w80 select_css" onkeydown="Select.del(this,event)" onkeypress="Select.write(this,event)"
+																ID="SelectCallId">
+
+                                                                </select>
+                                                            </td>
+															<td>&nbsp;</td>
+														</tr>
+													</table>
+                                               </div>
+                                           </td>
+                                      </tr>
+                                </table>
+                        </td>
+
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
