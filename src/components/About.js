@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import logo from './imgs/logo.jpg'
+import logo from '../imgs/logo.jpg'
 
 class About extends Component {
     componentDidMount() {
+        const aboutList = document.getElementById('about');
         document.addEventListener('scroll', () => {
-            if(document.body.scrollTop > 300) {
-                document.getElementById('about').classList.add('wb-move-from-bottom', 'wb-show');
+            if(document.body.scrollTop > 300 && aboutList.classList) {
+                aboutList.classList.add('wb-move-from-bottom', 'wb-show');
             }
         })
     }

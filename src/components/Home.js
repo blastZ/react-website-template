@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import simple from './imgs/simple.svg'
-import reliable from './imgs/reliable.svg'
-import scalable from './imgs/scalable.svg'
+import simple from '../imgs/simple.svg'
+import reliable from '../imgs/reliable.svg'
+import scalable from '../imgs/scalable.svg'
 
 class Home extends Component {
     render() {

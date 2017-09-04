@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './css/w3.css';
+import '../css/w3.css';
 import TopBar from './TopBar';
-import Recruitment from './recruitment/Recruitment';
+import Recruitment from './Recruitment';
 import Home from './Home';
 import About from './About';
 import SegmentBar from './SegmentBar';
@@ -10,8 +10,9 @@ import Contact from './Contact';
 import DescriptionBar from './DescriptionBar';
 import BottomBar from './BottomBar';
 import { Route } from 'react-router-dom';
-import En from './languages/en.json';
-import Zh_cn from './languages/zh_cn.json';
+import En from '../languages/en.json';
+import Zh_cn from '../languages/zh_cn.json';
+import VTChoose from './VTChoose';
 
 class App extends Component {
     state = {
@@ -34,6 +35,12 @@ class App extends Component {
                         <SegmentBar bgimg="bgimg-2" text="核心技术展示"/>
                         <Product/>
                         <BottomBar/>
+                    </div>
+                )}/>
+                <Route exact path="/video" render={() => (
+                    <div className="full-height">
+                        <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="normal-mode"/>
+                        <VTChoose/>
                     </div>
                 )}/>
                 <Route exact path="/contact" render={() => (

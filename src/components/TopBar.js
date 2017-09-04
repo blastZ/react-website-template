@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './css/font-awesome.min.css'
+import '../css/font-awesome.min.css'
 import { Link } from 'react-router-dom'
 
 class TopBar extends Component {
@@ -47,7 +47,7 @@ class TopBar extends Component {
                         <i className="fa fa-th" aria-hidden="true"></i> {content.demo}
                         <div className="w3-dropdown-content w3-bar-block w3-border">
                             <a href="http://demo.codvision.com:18038" className="w3-bar-item w3-button">图像智能分析系统</a>
-                            <a href="/MediaCtl-VTA.html" className="w3-bar-item w3-button w3-dropdown-hover">多方远程视频协作系统</a>
+                            <Link to="/video" className="w3-bar-item w3-button w3-dropdown-hover">多方远程视频协作系统</Link>
                         </div>
                     </div>
                     <Link onClick={this.moveToTop} to="/recruitment" className="w3-bar-item wb-hoverable w3-hide-small"><i className="fa fa-user" aria-hidden="true"></i> {content.recruitment}</Link>
