@@ -25,9 +25,30 @@ a {
     max-width: 100%;
 }
 
-.logo-list > img {
-    margin-left: 20px;
-    margin-top: 20px;
+.logo-list {
+    margin-top: 25px;
+}
+
+.logo-list .style1 {
+    width: 190px !important;
+    height: 105px !important;
+    background: white;
+    background-repeat: no-repeat !important;
+    background-size: 80%;
+    background-position: center !important;
+    border: 1px solid #e3e3e3 !important;
+    margin: 0 -1px 0 0;
+}
+
+.logo-list .style2 {
+    width: 190px !important;
+    height: 105px !important;
+    background: white;
+    background-repeat: no-repeat !important;
+    background-size: 96px 94.4px;
+    background-position: center !important;
+    border: 1px solid #e3e3e3 !important;
+    margin: 0 -1px 0 0;
 }
 
 .bgimg-1 {
@@ -240,9 +261,8 @@ ul {
 @media screen and (max-width: 548px) {
     .wb-hover-card img {
         margin-bottom: 10px;
-        max-width: 200px;
+        max-width: 133px;
         max-height: 125px;
-        max-width: 100%;
         margin-left: 10px;
         margin-right: 10px;
     }

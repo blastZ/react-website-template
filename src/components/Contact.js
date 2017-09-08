@@ -49,7 +49,7 @@ class Contact extends Component {
                             <li>{`创始人荣获2010年国家科技技术进步奖二等奖、2013年中国商业联合会科学技术奖一等奖`}</li>
                             <li>{`创世团队自03年起一直专注于图像视频技术的研发`}</li>
                         </ul>
-                        <div style={{marginTop: '40px'}}>
+                        <div className="w3-hide-small" style={{marginTop: '40px'}}>
                             <div className="flex-box">
                                 <img src={require('../imgs/certificate/guojiakexuejingbu.png')}/>
                                 <div className="flex-box flex-column" style={{marginLeft: '20px'}}>
@@ -64,18 +64,26 @@ class Contact extends Component {
                     <div className="w3-padding-32">
                         <h3>合作客户</h3>
                         <div>
-                            <div className="logo-list">
-                                <img src={require('../imgs/logo/uniview.png')}/>
-                                <img src={require('../imgs/logo/avic.png')}/>
-                                <br/>
-                                <div className="flex-box" style={{margin: '20px'}}>
-                                    <img src={require('../imgs/logo/shanghai.png')}/>
-                                    <div className="flex-box flex-column" style={{marginLeft: '20px'}}>
-                                        <img src={require('../imgs/logo/eastcome.png')}/>
-                                        <img style={{marginTop: '20px'}} src={require('../imgs/logo/joyoung.png')}/>
-                                    </div>
-                                </div>
-                            </div>
+                            {//<div className="logo-list">
+                            //     <img src={require('../imgs/logo/uniview.png')}/>
+                            //     <img src={require('../imgs/logo/avic.png')}/>
+                            //     <br/>
+                            //     <div className="flex-box" style={{margin: '20px'}}>
+                            //         <img src={require('../imgs/logo/shanghai.png')}/>
+                            //         <div className="flex-box flex-column" style={{marginLeft: '20px'}}>
+                            //             <img src={require('../imgs/logo/eastcome.png')}/>
+                            //             <img style={{marginTop: '20px'}} src={require('../imgs/logo/joyoung.png')}/>
+                            //         </div>
+                            //     </div>
+                            // </div>
+                            }
+                            <ul className="logo-list flex-box" style={{flexWrap: 'wrap'}}>
+                                <li className="style1" style={{backgroundImage: `url(${require('../imgs/logo/uniview.png')})`}}></li>
+                                <li className="style1" style={{backgroundImage: `url(${require('../imgs/logo/avic.png')})`}}></li>
+                                <li className="style2" style={{backgroundImage: `url(${require('../imgs/logo/shanghai.png')})`}}></li>
+                                <li className="style1" style={{backgroundImage: `url(${require('../imgs/logo/eastcome.png')})`}}></li>
+                                <li className="style1" style={{backgroundImage: `url(${require('../imgs/logo/joyoung.png')})`}}></li>
+                            </ul>
                         </div>
                     </div>
                     <div id="wb-contact-content" className="w3-padding-32">

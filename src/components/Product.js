@@ -26,11 +26,11 @@ class Product extends Component {
                     <div id="pro_1" className="w3-center wb-hover-card wb-hide">
                         <h4 className="w3-center">采集 —— 基于应用场景的ISP成像处理技术</h4>
                         <div className="flex-box" style={{justifyContent: 'center'}}>
-                            <div className="flex-box flex-column" style={{justifyContent: 'center'}}>
+                            <div className="flex-box flex-column" style={{justifyContent: 'center', maxWidth: '50%', alignItems: 'center'}}>
                                 <img className="w3-image w3-card" src={require("../imgs/hand1.jpg")}/>
                                 <p>(a)</p>
                             </div>
-                            <div className="flex-box flex-column" style={{justifyContent: 'center'}}>
+                            <div className="flex-box flex-column" style={{justifyContent: 'center', maxWidth: '50%', alignItems: 'center'}}>
                                 <img className="w3-image w3-card" src={require("../imgs/hand2.jpg")}/>
                                 <p>(b)</p>
                             </div>
@@ -40,11 +40,11 @@ class Product extends Component {
                     <div id="pro_2" className="w3-center wb-hover-card wb-hide">
                         <h4 className="w3-center">传输 —— 基于视觉感知的图像视频压缩传输技术</h4>
                         <div className="flex-box" style={{justifyContent: 'center'}}>
-                            <div className="flex-box flex-column" style={{justifyContent: 'center'}}>
+                            <div className="flex-box flex-column" style={{justifyContent: 'center', maxWidth: '50%', alignItems: 'center'}}>
                                 <img className="w3-image w3-card" src={require("../imgs/lena.jpg")}/>
                                 <p>(a) Original, 11.1 KB</p>
                             </div>
-                            <div className="flex-box flex-column" style={{justifyContent: 'center'}}>
+                            <div className="flex-box flex-column" style={{justifyContent: 'center', maxWidth: '50%', alignItems: 'center'}}>
                                 <img className="w3-image w3-card" src={require("../imgs/lena_out.jpg")}/>
                                 <p>{`(b) PLR=5% 4.89KB`}</p>
                             </div>
@@ -54,13 +54,13 @@ class Product extends Component {
                     <div id="pro_3" className="w3-center wb-hover-card wb-hide">
                         <h4 className="w3-center">分析 —— 基于深度学习的图像视频分析技术</h4>
                         <div className="flex-box" style={{justifyContent: 'center'}}>
-                            <div className="flex-box flex-column" style={{justifyContent: 'center'}}>
+                            <div className="flex-box flex-column" style={{justifyContent: 'center', maxWidth: '50%', alignItems: 'center'}}>
                                 <img className="w3-image w3-card" src={require("../imgs/fridge.jpg")}/>
-                                <p>(a) 食材检测</p>
+                                <p style={{whiteSpace: 'nowrap'}}>(a) 食材检测</p>
                             </div>
-                            <div className="flex-box flex-column" style={{justifyContent: 'center'}}>
+                            <div className="flex-box flex-column" style={{justifyContent: 'center', maxWidth: '50%', alignItems: 'center'}}>
                                 <img className="w3-image w3-card" src={require("../imgs/road.jpg")}/>
-                                <p>{`(b) 机非人检测`}</p>
+                                <p style={{whiteSpace: 'nowrap'}}>{`(b) 机非人检测`}</p>
                             </div>
                         </div>
                         <p className="w3-center">优化深度学习框架与模型，实现高精度高性能的目标检测、识别、分割等功能，准确率90%以上。</p>
