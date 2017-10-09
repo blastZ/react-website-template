@@ -2,18 +2,9 @@ import React, { Component } from 'react'
 import logo from '../imgs/logo.jpg'
 
 class About extends Component {
-    componentDidMount() {
-        const aboutList = document.getElementById('about');
-        document.addEventListener('scroll', () => {
-            if(document.body.scrollTop > 300 && aboutList.classList) {
-                aboutList.classList.add('wb-move-from-bottom', 'wb-show');
-            }
-        })
-    }
-
     render() {
         return (
-            <div className={`w3-content w3-container w3-padding-64 w3-margin-top wb-hide`} id="about">
+            <div className={`w3-content w3-container w3-padding-64 w3-margin-top`} id="about">
                 <p className="w3-center w3-padding-24"><em>码全科技为智慧城市，智能安防，智能家居，智慧金融等行业提供视频传输与智能分析等人工智能相关技术，
                     并以API、嵌入式模块、系统等方式提供服务。</em></p>
                 <div className="w3-row">

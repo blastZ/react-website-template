@@ -47,7 +47,7 @@ class Contact extends Component {
                             <li>{`2016年认定为杭州经开区科技型企业`}</li>
                             <li>{`2017年认定为杭州市高科技企业`}</li>
                             <li>{`创始人荣获2010年国家科技技术进步奖二等奖、2013年中国商业联合会科学技术奖一等奖`}</li>
-                            <li>{`创世团队自03年起一直专注于图像视频技术的研发`}</li>
+                            <li>{`创始团队自03年起一直专注于图像视频技术的研发`}</li>
                         </ul>
                         <div className="w3-hide-small" style={{marginTop: '40px'}}>
                             <div className="flex-box">

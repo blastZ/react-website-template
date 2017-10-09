@@ -1,6 +1,10 @@
-import React, { Component } from 'react'
-import '../css/font-awesome.min.css'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import HomeIcon from 'react-icons/lib/fa/home';
+import DemoIcon from 'react-icons/lib/fa/th';
+import RecIcon from 'react-icons/lib/fa/user';
+import ConnectIcon from 'react-icons/lib/fa/envelope';
+import LanguageIcon from 'react-icons/lib/fa/globe';
 
 class TopBar extends Component {
     state = {
@@ -9,7 +13,7 @@ class TopBar extends Component {
     }
 
     scrollListener = () => {
-        if(document.body.scrollTop >= 400) {
+        if(document.getElementsByTagName('html')[0].scrollTop >= 400) {
             this.setState({showWhiteTopBar: true});
         } else {
             this.setState({showWhiteTopBar: false});
@@ -42,18 +46,25 @@ class TopBar extends Component {
                             : 'w3-bar w3-white w3-card w3-animate-top'}`
                      } id="navBar" style={{overflow: 'visible'}}>
                     <a className="w3-bar-item w3-hide-medium w3-hide-large w3-button w3-right" onClick={this.toggleNavBar}><i className="fa fa-bars"></i></a>
-                    <Link onClick={this.moveToTop} to="/" className="w3-bar-item wb-hoverable"><i className="fa fa-home" aria-hidden="true"></i> {content.home}</Link>
+                    <Link onClick={this.moveToTop} to="/" className="w3-bar-item wb-hoverable">
+                      <HomeIcon /> {content.home}
+                    </Link>
                     <div className="w3-bar-item wb-hoverable w3-hide-small w3-dropdown-hover">
-                        <i className="fa fa-th" aria-hidden="true"></i> {content.demo}
+                        <DemoIcon /> {content.demo}
                         <div className="w3-dropdown-content w3-bar-block w3-border">
                             <a href="http://demo.codvision.com:18038" className="w3-bar-item w3-button">图像智能分析系统</a>
                             <Link to="/video" className="w3-bar-item w3-button w3-dropdown-hover">多方远程视频协作系统</Link>
                         </div>
                     </div>
-                    <Link onClick={this.moveToTop} to="/recruitment" className="w3-bar-item wb-hoverable w3-hide-small"><i className="fa fa-user" aria-hidden="true"></i> {content.recruitment}</Link>
-                    <Link onClick={this.moveToTop} to="contact" className="w3-bar-item wb-hoverable w3-hide-small"><i className="fa fa-envelope" aria-hidden="true"></i> {content.contact}</Link>
-                    {/*<a className="w3-bar-item w3-right wb-hoverable w3-hide-small"><i className="fa fa-sign-in" aria-hidden="true"></i> {content.login}</a>*/}
-                    <a onClick={this.props.onChangeLanguage} className="w3-bar-item w3-right wb-hoverable w3-hide-small"><i className="fa fa-globe" aria-hidden="true"></i> {content.language}</a>
+                    <Link onClick={this.moveToTop} to="/recruitment" className="w3-bar-item wb-hoverable w3-hide-small">
+                      <RecIcon /> {content.recruitment}
+                    </Link>
+                    <Link onClick={this.moveToTop} to="contact" className="w3-bar-item wb-hoverable w3-hide-small">
+                      <ConnectIcon /> {content.contact}
+                    </Link>
+                    <a onClick={this.props.onChangeLanguage} className="w3-bar-item w3-right wb-hoverable w3-hide-small">
+                      <LanguageIcon /> {content.language}
+                    </a>
                 </div>
                 <div className={`w3-bar-block w3-hide w3-hide-medium w3-hide-large w3-white w3-card-2" id="small-nav-bar ${this.state.showSmallNavBar ? 'w3-show' : null}`}>
                     {/*<a onClick={this.props.onChangeLanguage} className="w3-bar-item w3-button"><i className="fa fa-globe" aria-hidden="true"></i> {content.language}</a>*/}

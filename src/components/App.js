@@ -13,6 +13,11 @@ import { Route } from 'react-router-dom';
 import En from '../languages/en.json';
 import Zh_cn from '../languages/zh_cn.json';
 import VTChoose from './VTChoose';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  height: 100%;
+`;
 
 class App extends Component {
     state = {
@@ -26,22 +31,22 @@ class App extends Component {
     render() {
         const content = this.state.language === 'zh-cn' ? Zh_cn : En
         return (
-            <div className="full-height">
+            <Container>
                 <Route exact path='/' render={() => (
-                    <div className="full-height">
+                    <Container>
                         <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="scroll-mode"/>
                         <Home content={content.home}/>
                         <About/>
                         <SegmentBar bgimg="bgimg-2" text="核心技术展示"/>
                         <Product/>
                         <BottomBar/>
-                    </div>
+                    </Container>
                 )}/>
                 <Route exact path="/video" render={() => (
-                    <div className="full-height">
+                    <Container>
                         <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="normal-mode"/>
                         <VTChoose/>
-                    </div>
+                    </Container>
                 )}/>
                 <Route exact path="/contact" render={() => (
                     <div className="bgimg-3 w3-text-white" style={{paddingTop: '10px'}}>
@@ -52,13 +57,13 @@ class App extends Component {
                     </div>
                 )}/>
                 <Route exact path="/recruitment" render={() => (
-                    <div className="full-height">
+                    <Container>
                         <TopBar onChangeLanguage={this.changeLanguage} content={content.toolBar} mode="scroll-mode"/>
                         <Recruitment/>
                         <BottomBar/>
-                    </div>
+                    </Container>
                 )}/>
-            </div>
+            </Container>
         );
     }
 }
