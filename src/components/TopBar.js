@@ -5,6 +5,7 @@ import DemoIcon from 'react-icons/lib/fa/th';
 import RecIcon from 'react-icons/lib/fa/user';
 import ConnectIcon from 'react-icons/lib/fa/envelope';
 import LanguageIcon from 'react-icons/lib/fa/globe';
+import SmallBarIcon from 'react-icons/lib/fa/bars';
 
 class TopBar extends Component {
     state = {
@@ -33,7 +34,7 @@ class TopBar extends Component {
     }
 
     moveToTop = () => {
-        document.body.scrollTop = 0;
+        document.getElementsByTagName('html')[0].scrollTop = 0;
     }
 
     render() {
@@ -45,7 +46,7 @@ class TopBar extends Component {
                             (this.state.showWhiteTopBar ? 'w3-bar w3-white w3-card w3-animate-top' : 'w3-bar w3-text-white')
                             : 'w3-bar w3-white w3-card w3-animate-top'}`
                      } id="navBar" style={{overflow: 'visible'}}>
-                    <a className="w3-bar-item w3-hide-medium w3-hide-large w3-button w3-right" onClick={this.toggleNavBar}><i className="fa fa-bars"></i></a>
+                    <a className="w3-bar-item w3-hide-medium w3-hide-large w3-button w3-right" onClick={this.toggleNavBar}><SmallBarIcon /></a>
                     <Link onClick={this.moveToTop} to="/" className="w3-bar-item wb-hoverable">
                       <HomeIcon /> {content.home}
                     </Link>
@@ -67,8 +68,7 @@ class TopBar extends Component {
                     </a>
                 </div>
                 <div className={`w3-bar-block w3-hide w3-hide-medium w3-hide-large w3-white w3-card-2" id="small-nav-bar ${this.state.showSmallNavBar ? 'w3-show' : null}`}>
-                    {/*<a onClick={this.props.onChangeLanguage} className="w3-bar-item w3-button"><i className="fa fa-globe" aria-hidden="true"></i> {content.language}</a>*/}
-                    <a href="http://demo.codvision.com:16802/demo" className="w3-bar-item w3-button">{content.demo}</a>
+                    {/* <a href="http://demo.codvision.com:16802/demo" className="w3-bar-item w3-button">{content.demo}</a>*/}
                     <Link to="/recruitment" className="w3-bar-item w3-button">{content.recruitment}</Link>
                     <Link to="/contact" className="w3-bar-item w3-button">{content.contact}</Link>
                 </div>
